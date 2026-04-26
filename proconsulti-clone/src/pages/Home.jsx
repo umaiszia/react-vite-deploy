@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 function Home() {
   return (
     <>
@@ -24,9 +25,11 @@ function Home() {
             ProConsult International is a multi-disciplinary consulting firm that helps clients achieve success through strategic insights and practical execution.
           </p>
 
-          <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white">
-            Get Started <span>→</span>
-          </button>
+          <a href="/#about us" target="_blank" rel="noreferrer">
+            <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white">
+              Get Started <span>→</span>
+            </button>
+          </a>
         </div>
       </div>
 
@@ -71,17 +74,18 @@ function AboutSection() {
             </p>
 
             <div className="flex flex-wrap gap-4 mt-4">
-              <button className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
-                Read More <span>→</span>
-              </button>
+              <Link to="/about" className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
+                Read More →
+              </Link>
 
-              <button className="flex-1 min-w-[140px] py-3 bg-blue-900 text-white border-2 border-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-900 flex justify-center items-center gap-2 shadow-lg">
-                Meet Our Team <span>→</span>
-              </button>
+              <Link to="/team" className="flex-1 min-w-[140px] py-3 bg-blue-900 text-white border-2 border-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-900 flex justify-center items-center gap-2 shadow-lg">
+                Meet Our Team →
+              </Link>
+              
+              <Link to="/services" className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
+                Explore Our Services →
+              </Link>
 
-              <button className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
-                Explore Services <span>→</span>
-              </button>
             </div>
           </div>
         </div>
@@ -92,7 +96,9 @@ function AboutSection() {
 }
 
 function ServicesSection() {
+  
   return (
+    <>
     <section className="py-20 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
 
@@ -434,6 +440,315 @@ function ServicesSection() {
           </div>
 
         </div>
+      </div>
+    </section>
+    
+    <MembershipSection/>  
+    </>
+  );
+}
+function MembershipSection() {
+  const associations = [
+    { name: "ICAP", desc: <a href="#" className="text-black hover:text-blue-500">Institute of Chartered Accountants of Pakistan (ICAP)</a>, img: "/membershiplogo1.webp" },
+    { name: "ICMAP", desc: <a href="#" className="text-black hover:text-blue-500">Institute of Cost and Management Accountants of Pakistan (ICMAP)</a>, img: "/membershiplogo2.webp" },
+    { name: "ICAEW", desc: <a href="#" className="text-black hover:text-blue-500">Institute of Chartered Accountants in England and Wales (ICAEW)</a>, img: "/membershiplogo3.webp" },
+    { name: "ACCA", desc: <a href="#" className="text-black hover:text-blue-500">Association of Chartered Certified Accountants (ACCA)</a>, img: "/membershiplogo4.webp" },
+    { name: "SECP", desc: <a href="#" className="text-black hover:text-blue-500">Securities and Exchange Commission of Pakistan (SECP)</a>, img: "/membershiplogo5.webp" },
+    { name: "BOI", desc: <a href="#" className="text-black hover:text-blue-500">Board of Investment Pakistan (BOI)</a>, img: "/membershiplogo6.webp" }
+  ];
+
+  return (
+    <>
+    <section className="py-20 px-4 bg-white">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* SECTION HEADER - Matches Services Style */}
+        <div className="text-center mb-16">
+          <div className="w-12 h-1 bg-blue-900 mx-auto mb-4"></div>
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">Membership & Associations</h2>
+          <p className="text-gray-600 max-w-4xl mx-auto">
+            Proconsult International is an SECP-incorporated consulting firm, registered with leading financial and trade bodies.
+          </p>
+        </div>
+
+        {/* 3x3 GRID LAYOUT */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {associations.map((item, index) => (
+            <div key={index} className="bg-white rounded-xl border border-gray-100 shadow-sm p-10 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow duration-300">
+              <div className="h-24 flex items-center justify-center mb-6">
+                <img src={item.img} alt={item.name} className="max-h-full w-auto object-contain" />
+              </div>
+              <h4 className="text-gray-700 font-medium text-sm md:text-base leading-relaxed">
+                {item.desc}
+              </h4>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+    <WhyChooseUsSection/>
+    </>
+  );
+  
+} 
+
+function WhyChooseUsSection() {
+  return (
+    <>
+    <section className="py-20 px-4 bg-gray-50">
+      <div className="max-w-8xl mx-auto">
+        
+        {/* SECTION HEADER */}
+        <div className="text-center mb-16">
+          <p className="text-sm font-semibold text-blue-900 tracking-wider uppercase mb-2">WHY CHOOSE PROCONSULT INTERNATIONAL</p>
+          <h2 className="text-4xl font-bold text-blue-900 mb-4">What Sets Us Apart</h2>
+          <div className="w-16 h-1 bg-blue-900 mx-auto"></div>
+        </div>
+
+        {/* TOP ROW: 4 CARDS (Written out one by one) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 ">
+          
+          {/* Card 1 */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <div className="w-1 h-auto bg-blue-900 rounded-full flex"></div>
+            <div>
+              <h4 className="text-xl font-semibold text-blue-900 mb-2">Expert Team</h4>
+              <div className="flex items-start gap-2">
+                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
+                <p className="text-gray-600 text-sm">Senior consultants with Big 4 experience</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+            <div>
+              <h4 className="text-xl font-semibold text-blue-900 mb-2">Proven Trust</h4>
+              <div className="flex items-start gap-2">
+                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
+                <p className="text-gray-600 text-sm">Trusted by leading organizations</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+            <div>
+              <h4 className="text-xl font-semibold text-blue-900 mb-2">Efficient Delivery</h4>
+              <div className="flex items-start gap-2">
+                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
+                <p className="text-gray-600 text-sm">Responsive and cost-effective delivery</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+            <div>
+              <h4 className="text-xl font-semibold text-blue-900 mb-2">Global Standards</h4>
+              <div className="flex items-start gap-2">
+                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
+                <p className="text-gray-600 text-sm">Local presence, global standards</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        {/* BOTTOM ROW: STATS (Solid Blue Boxes) */}
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 grid grid-cols-2 md:grid-cols-4 gap-4">
+          
+          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+            <h3 className="text-4xl font-bold text-blue-900">7+</h3>
+            <p className="text-blue-900 text-sm">Years Experience</p>
+          </div>
+
+          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+            <h3 className="text-4xl font-bold text-blue-900">100+</h3>
+            <p className="text-blue-900 text-sm">Clients Worldwide</p>
+          </div>
+
+          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+            <h3 className="text-4xl font-bold text-blue-900">95%</h3>
+            <p className="text-blue-900 text-sm">Client Retention</p>
+          </div>
+
+          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+            <h3 className="text-4xl font-bold text-blue-900">20+</h3>
+            <p className="text-blue-900 text-sm">Expert Consultants</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <TestimonialSection/>
+    </>
+  );
+}
+
+function TestimonialSection() {
+  return (
+  <>
+    <section className="py-20 px-4 bg-blue-900 text-white relative overflow-hidden">
+
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* The Quote */}
+        <h2 className="text-xl md:text-3xl italic font-medium leading-relaxed mb-8">
+          "ProConsult played a critical role in transforming our finance function. 
+          Their strategic insight and hands-on approach helped us scale with confidence."
+        </h2>
+
+        {/* The Author */}
+        <div className="mb-10">
+          <p className="font-bold text-lg">- CFO, Regional Logistics Group</p>
+          <p className="text-blue-200 text-sm">Leading logistics company with 500+ employees</p>
+        </div>
+
+        {/* The Button */}
+        <a href="#" target="_blank" rel="noreferrer" >
+          <button className="bg-blue-700 hover:bg-white text-white hover:text-blue-900 font-semibold py-3 px-8 rounded-md transition-colors duration-300 flex items-center gap-2 mx-auto">
+            Read More Case Studies 
+            <span>→</span>
+          </button>
+        </a>
+      </div>
+
+    </section>
+    <InternationalPresenceSection/>
+    </>
+  );
+}
+
+function InternationalPresenceSection() {
+  return (
+    <>
+    <section className="py-24 px-4 bg-gray-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* SECTION HEADER */}
+        <div className="text-center mb-16 max-w-2xl mx-auto">
+          <p className="text-lg font-semibold text-blue-900 tracking-widest uppercase mb-2">
+            INTERNATIONAL PRESENCE
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-5">
+            Our Reach Across Regions
+          </h2>
+          <div className="w-16 h-1 bg-blue-900 mx-auto mb-6"></div>
+          <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+            With offices and associates across key markets, we provide localized service backed by global expertise.
+          </p>
+        </div>
+
+        {/* TWO-COLUMN LAYOUT */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          
+          {/* LEFT: OFFICE LISTS (The simple "Manual Way") */}
+          <div className="space-y-4">
+            <h4 className="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-300 pb-2 inline-block">
+              Office Locations:
+            </h4>
+            
+            {/* Location 1 */}
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
+              <p className="text-gray-700 font-medium">Islamabad</p>
+            </div>
+
+            {/* Location 2 */}
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
+              <p className="text-gray-700 font-medium">Kabul</p>
+            </div>
+
+            {/* Location 3 */}
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
+              <p className="text-gray-700 font-medium">Dubai</p>
+            </div>
+
+            {/* Location 4 */}
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
+              <p className="text-gray-700 font-medium">Manchester</p>
+            </div>
+
+            {/* Location 5 */}
+            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
+              <p className="text-gray-700 font-medium">Jeddah</p>
+            </div>
+
+          </div>
+
+          {/* RIGHT: ANIMATED MAP AND BUTTON (Clean Design) */}
+          <div className="relative p-6 md:p-8 rounded-2xl border border-gray-200 shadow-lg bg-white overflow-hidden flex flex-col items-center">
+            
+            {/* The Animated Map Image - Wraps around the image for simplicity */}
+            <div className="overflow-hidden rounded-xl mb-10 w-full flex justify-center">
+              <img 
+                src="/proconsultimap.webp" // --- PLACE YOUR MAP IMAGE HERE ---
+                alt="Global Reach Map" 
+                className="w-full h-auto max-w-xl object-contain animate-fade-in-down transition-transform duration-1000 ease-out hover:scale-105"
+              />
+            </div>
+
+            {/* The Working Link Button (Matches Testimonial Style) */}
+            <a href="#" target="_blank" rel="noreferrer" >
+          <button className="bg-blue-700 hover:bg-blue-500 text-white hover:text-white font-semibold py-3 px-8 rounded-md transition-colors duration-300 flex items-center gap-2 mx-auto">
+            Learn More 
+            <span>→</span>
+          </button>
+          </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <GrowTogetherSection/>
+    </>
+  );
+}
+function GrowTogetherSection() {
+  return (
+    <section className="py-20 px-4 bg-blue-900 text-white">
+      <div className="max-w-4xl mx-auto text-center">
+        
+        {/* Header Text */}
+        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          Let's Grow Together
+        </h2>
+
+        {/* Subtext */}
+        <p className="text-blue-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+          Ready to move your organization forward? Let's explore how the ProConsult group can help you.
+        </p>
+
+        {/* Buttons Row */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          
+          {/* Contact Us Button (White) */}
+          <a href="#" target="_blank" rel="noreferrer">
+            <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-600 hover:text-white">
+              Contact Us <span>→</span>
+            </button>
+          </a>
+
+          {/* Request a Demo Button (Outline) */}
+          <a href="/demo" target="_blank" rel="noreferrer">
+            <button className="w-full sm:w-auto border-2 border-white text-white font-bold py-4 px-10 rounded-full hover:bg-white hover:text-blue-900 transition-all duration-300 text-center">
+              Request a Demo
+            </button>
+          </a>
+
+        </div>
+
       </div>
     </section>
   );
