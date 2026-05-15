@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  // State to handle mobile sidebar toggle
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Close dropdown when clicking outside (optional but helpful)
   const toggleDropdown = (name) => {
     if (activeDropdown === name) {
       setActiveDropdown(null);
@@ -14,17 +15,28 @@ function Navbar() {
 
   return (
     <nav className="w-full sticky top-0 z-50 bg-white shadow-md border-b border-gray-100">
-      <div className="max-w-7xl flex justify-between items-center p-4">
+      {/* Added mx-auto and max-w-7xl to center the content on large screens */}
+      <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         
-        {/* LOGO */}
-        <div className="flex-shrink-0 ml-5">
-          <a href="/">
-            <img src="proconsulti-logo.webp" alt="ProConsulti Logo" className="h-12 w-auto" />
-          </a>
+        {/* LOGO & HAMBURGER SECTION */}
+        <div className="flex items-center gap-15 ml-5">
+          {/* 1. HAMBURGER BUTTON - Visible only on mobile/tablet */}
+          <button 
+            className="lg:hidden text-blue-900 text-3xl focus:outline-none z-[100]" 
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <i className="fas fa-bars"></i>
+          </button>
+
+          <div className="flex-shrink-0">
+            <a href="/">
+              <img src="proconsulti-logo.webp" alt="ProConsulti Logo" className="h-12 w-auto" />
+            </a>
+          </div>
         </div>
 
-        {/* NAVIGATION LINKS */}
-        <ul className="flex gap-15 text-blue-900 font-semibold items-center">
+        {/* NAVIGATION LINKS - Hidden on mobile, flex on desktop */}
+        <ul className="hidden lg:flex gap-15 text-blue-900 font-semibold items-center">
           
           {/* 1. CAPABILITIES (Dropdown) */}
           <li className="relative group">
@@ -52,7 +64,6 @@ function Navbar() {
             </button>
             
             <div className="absolute left-0 mt-0 w-64 bg-white shadow-xl border border-gray-100 rounded-b-lg py-4 hidden group-hover:block animate-fadeIn">
-              {/* Heading Section */}
               <div className="px-6 py-2">
                 <span className="text-xs uppercase font-bold text-gray-400 tracking-widest">Research & Publications</span>
                 <a href="/case-studies" className="block mt-1 pl-2 text-sm hover:text-blue-600 hover:underline">Case Study</a>
@@ -90,8 +101,37 @@ function Navbar() {
           <li>
             <a href="/clients" className="py-2 hover:text-blue-600 relative after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-600 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">Clients</a>
           </li>
-          
         </ul>
+
+        {/* --- MOBILE SIDEBAR & OVERLAY --- */}
+        {/* Overlay Background */}
+        <div 
+          className={`fixed inset-0 bg-black/50 z-[60] lg:hidden transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        ></div>
+
+        {/* Sidebar Panel */}
+        <div className={`fixed top-0 left-0 h-full w-[280px] bg-[#d1eef8] z-[70] shadow-2xl transform transition-transform duration-300 lg:hidden ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className="flex items-center justify-between p-6 border-b border-blue-100 bg-white/50">
+            <img src="proconsulti-logo.webp" alt="Logo" className="h-8 w-auto" />
+            <button onClick={() => setIsMobileMenuOpen(false)} className="text-blue-900 text-2xl">
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+
+          <div className="flex flex-col text-blue-900 font-semibold overflow-y-auto h-[calc(100%-80px)]">
+            <a href="/capabilities" className="flex justify-between items-center px-6 py-4 bg-blue-900 text-white border-b border-blue-800">
+              Capabilities <i className="fas fa-chevron-right text-xs"></i>
+            </a>
+            <a href="/tech-ai" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Tech & AI</a>
+            <a href="/insights" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Insights</a>
+            <a href="/about" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
+            <a href="/team" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Team</a>
+            <a href="/clients" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Client</a>
+            <a href="/contact" className="px-6 py-4 border-b border-blue-100 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+            <a href="/careers" className="px-6 py-4 hover:bg-blue-100" onClick={() => setIsMobileMenuOpen(false)}>Careers</a>
+          </div>
+        </div>
       </div>
     </nav>
   );
