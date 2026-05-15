@@ -1,5 +1,29 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
 function Home() {
+  // Animation Variants for the container
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.7, // Time between each element appearing
+        delayChildren: 0.7,
+      },
+    },
+  };
+
+  // Animation Variants for individual items
+  const itemVariants = {
+    hidden: { opacity: 0, x: -80 }, // Text starts slightly to the left
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { type: 'spring', stiffness: 50, damping: 20 } 
+    },
+  };
+
   return (
     <>
       {/* 1. HERO SECTION */}
@@ -15,26 +39,202 @@ function Home() {
           Does not support!
         </video>
 
+        {/* Overlay */}
         <div className="absolute z-10 w-full h-full bg-black/40"></div>
 
-        <div className="relative z-20 text-center text-white px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">
-            Proactive, <br /> Proficient & <br /> Professional
-          </h1>
-          <p className="text-lg max-w-2xl mx-auto mb-8 text-gray-200">
-            ProConsult International is a multi-disciplinary consulting firm that helps clients achieve success through strategic insights and practical execution.
-          </p>
+        {/* CONTENT WITH ANIMATIONS */}
+        <motion.div 
+          className="relative z-20 text-center text-white px-4"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
+            variants={itemVariants}
+          >
+            Proactive, <br /> 
+            <motion.span variants={itemVariants} className="inline-block">Proficient &</motion.span> <br /> 
+            <motion.span variants={itemVariants} className="inline-block">Professional</motion.span>
+          </motion.h1>
 
-          <a href="/#about us" target="_blank" rel="noreferrer">
-            <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white">
-              Get Started <span>→</span>
-            </button>
-          </a>
-        </div>
+          <motion.p 
+            className="text-lg max-w-2xl mx-auto mb-8 text-gray-200"
+            variants={itemVariants}
+          >
+            ProConsult International is a multi-disciplinary consulting firm that helps clients achieve success through strategic insights and practical execution.
+          </motion.p>
+
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <a href="/#about-us" rel="noreferrer">
+              <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white group">
+                Get Started 
+                <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+              </button>
+            </a>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* 2. ABOUT SECTION - We call it here so it shows up below the Hero */}
-      <AboutSection />
+      {/* 2. WHY CHOOSE US SECTION */}
+      <WhyChooseUsSection/>
+    </>
+  );
+}
+
+import React, { useState, useEffect, useRef } from 'react';
+
+// --- COUNTER COMPONENT ---
+// This handles the animation logic for the numbers
+const Counter = ({ end, duration = 3000 }) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef(null);
+  const [startCount, setStartCount] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStartCount(true);
+      },
+      { threshold: 0.5 } // Starts when 50% of the element is visible
+    );
+
+    if (countRef.current) observer.observe(countRef.current);
+    
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!startCount) return;
+
+    let start = 0;
+    const increment = end / (duration / 16); // 16ms interval for 60fps
+    
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [startCount, end, duration]);
+
+  return <span ref={countRef}>{count}</span>;
+};
+
+// --- MAIN SECTION ---
+function WhyChooseUsSection() {
+  return (
+    <>
+      <section className="py-20 px-4 bg-gray-50">
+        <div className="max-w-8xl mx-auto">
+          
+          {/* SECTION HEADER */}
+          <div className="text-center mb-16">
+            <p className="text-sm font-semibold text-blue-900 tracking-wider uppercase mb-2">
+              WHY CHOOSE PROCONSULT INTERNATIONAL
+            </p>
+            <h2 className="text-4xl font-bold text-blue-900 mb-4">What Sets Us Apart</h2>
+            <div className="w-16 h-1 bg-blue-900 mx-auto"></div>
+          </div>
+
+          {/* TOP ROW: 4 CARDS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            
+            {/* Card 1 */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+              <div className="w-1 h-auto bg-blue-900 rounded-full flex"></div>
+              <div>
+                <h4 className="text-xl font-semibold text-blue-900 mb-2">Expert Team</h4>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <p className="text-gray-600 text-sm">Senior consultants with Big 4 experience</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+              <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+              <div>
+                <h4 className="text-xl font-semibold text-blue-900 mb-2">Proven Trust</h4>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <p className="text-gray-600 text-sm">Trusted by leading organizations</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+              <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+              <div>
+                <h4 className="text-xl font-semibold text-blue-900 mb-2">Efficient Delivery</h4>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <p className="text-gray-600 text-sm">Responsive and cost-effective delivery</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4 */}
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+              <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
+              <div>
+                <h4 className="text-xl font-semibold text-blue-900 mb-2">Global Standards</h4>
+                <div className="flex items-start gap-2">
+                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <p className="text-gray-600 text-sm">Local presence, global standards</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* BOTTOM ROW: STATS WITH ANIMATED COUNTERS */}
+          <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 grid grid-cols-2 md:grid-cols-4 gap-4">
+            
+            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+              <h3 className="text-4xl font-bold text-blue-900">
+                <Counter end={7} />+
+              </h3>
+              <p className="text-blue-900 text-sm">Years Experience</p>
+            </div>
+
+            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+              <h3 className="text-4xl font-bold text-blue-900">
+                <Counter end={100} />+
+              </h3>
+              <p className="text-blue-900 text-sm">Clients Worldwide</p>
+            </div>
+
+            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+              <h3 className="text-4xl font-bold text-blue-900">
+                <Counter end={95} />%
+              </h3>
+              <p className="text-blue-900 text-sm">Client Retention</p>
+            </div>
+
+            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
+              <h3 className="text-4xl font-bold text-blue-900">
+                <Counter end={20} />+
+              </h3>
+              <p className="text-blue-900 text-sm">Expert Consultants</p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      {<AboutSection/>}
     </>
   );
 }
@@ -487,109 +687,11 @@ function MembershipSection() {
 
       </div>
     </section>
-    <WhyChooseUsSection/>
+    <TestimonialSection/>
     </>
   );
   
 } 
-
-function WhyChooseUsSection() {
-  return (
-    <>
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-8xl mx-auto">
-        
-        {/* SECTION HEADER */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-blue-900 tracking-wider uppercase mb-2">WHY CHOOSE PROCONSULT INTERNATIONAL</p>
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">What Sets Us Apart</h2>
-          <div className="w-16 h-1 bg-blue-900 mx-auto"></div>
-        </div>
-
-        {/* TOP ROW: 4 CARDS (Written out one by one) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 ">
-          
-          {/* Card 1 */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
-            <div className="w-1 h-auto bg-blue-900 rounded-full flex"></div>
-            <div>
-              <h4 className="text-xl font-semibold text-blue-900 mb-2">Expert Team</h4>
-              <div className="flex items-start gap-2">
-                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
-                <p className="text-gray-600 text-sm">Senior consultants with Big 4 experience</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
-            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
-            <div>
-              <h4 className="text-xl font-semibold text-blue-900 mb-2">Proven Trust</h4>
-              <div className="flex items-start gap-2">
-                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
-                <p className="text-gray-600 text-sm">Trusted by leading organizations</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
-            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
-            <div>
-              <h4 className="text-xl font-semibold text-blue-900 mb-2">Efficient Delivery</h4>
-              <div className="flex items-start gap-2">
-                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
-                <p className="text-gray-600 text-sm">Responsive and cost-effective delivery</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
-            <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
-            <div>
-              <h4 className="text-xl font-semibold text-blue-900 mb-2">Global Standards</h4>
-              <div className="flex items-start gap-2">
-                <span className="text-green-500 mt-1 text-xs"><i className="fas fa-check text-blue-900 text-xl pr-2"></i></span>
-                <p className="text-gray-600 text-sm">Local presence, global standards</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* BOTTOM ROW: STATS (Solid Blue Boxes) */}
-        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 grid grid-cols-2 md:grid-cols-4 gap-4">
-          
-          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-            <h3 className="text-4xl font-bold text-blue-900">7+</h3>
-            <p className="text-blue-900 text-sm">Years Experience</p>
-          </div>
-
-          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-            <h3 className="text-4xl font-bold text-blue-900">100+</h3>
-            <p className="text-blue-900 text-sm">Clients Worldwide</p>
-          </div>
-
-          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-            <h3 className="text-4xl font-bold text-blue-900">95%</h3>
-            <p className="text-blue-900 text-sm">Client Retention</p>
-          </div>
-
-          <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-            <h3 className="text-4xl font-bold text-blue-900">20+</h3>
-            <p className="text-blue-900 text-sm">Expert Consultants</p>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-    <TestimonialSection/>
-    </>
-  );
-}
 
 function TestimonialSection() {
   return (
