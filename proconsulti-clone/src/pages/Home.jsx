@@ -8,15 +8,15 @@ function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.7, // Time between each element appearing
-        delayChildren: 0.7,
+        staggerChildren: 0.4, // Slightly faster stagger for snappier mobile feel
+        delayChildren: 0.3,
       },
     },
   };
 
   // Animation Variants for individual items
   const itemVariants = {
-    hidden: { opacity: 0, x: -80 }, // Text starts slightly to the left
+    hidden: { opacity: 0, x: -50 }, // Balanced offset for smaller screen bounds
     visible: { 
       opacity: 1, 
       x: 0, 
@@ -27,60 +27,72 @@ function Home() {
   return (
     <>
       {/* 1. HERO SECTION */}
-      <div className="relative h-[850px] w-full overflow-hidden flex items-center justify-center">
+      {/* Adjusted heights: 500px on mobile, 650px on tablet, 850px on desktops/small laptops */}
+      <div className="relative h-[550px] sm:h-[650px] lg:h-[850px] w-full overflow-hidden flex items-center justify-center">
+        
+        {/* Background Video */}
         <video
           autoPlay
           loop
           muted
           playsInline
-          className="absolute z-0 w-auto min-w-full min-h-full max-w-none object-cover"
+          className="absolute z-0 w-full h-full object-cover"
         >
           <source src="/procunsult-video.mp4" type="video/mp4" />
           Does not support!
         </video>
 
-        {/* Overlay */}
-        <div className="absolute z-10 w-full h-full bg-black/40"></div>
+        {/* Dynamic Overlay: Darker (70% opacity) on mobile/tablet for stark contrast, standard (40%) on desktops */}
+        <div className="absolute z-10 w-full h-full bg-black/70 md:bg-black/40 transition-colors duration-300"></div>
 
         {/* CONTENT WITH ANIMATIONS */}
         <motion.div 
-          className="relative z-20 text-center text-white px-4"
+          className="relative z-20 text-center text-white px-6 max-w-4xl mx-auto flex flex-col justify-center items-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
+          {/* Responsive Typography: Clean breaks on mobile, normal line flow on desktops */}
           <motion.h1 
-            className="text-4xl md:text-6xl font-bold mb-4 leading-tight"
+            className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight tracking-tight"
             variants={itemVariants}
           >
-            Proactive, <br /> 
-            <motion.span variants={itemVariants} className="inline-block">Proficient &</motion.span> <br /> 
-            <motion.span variants={itemVariants} className="inline-block">Professional</motion.span>
+            Proactive, <br className="md:hidden" /> 
+            <motion.span variants={itemVariants} className="inline-block">Proficient &</motion.span> <br className="md:hidden" /> 
+            <motion.span variants={itemVariants} className="inline-block"> Professional</motion.span>
           </motion.h1>
 
+          {/* Paragraph text scaling */}
           <motion.p 
-            className="text-lg max-w-2xl mx-auto mb-8 text-gray-200"
+            className="text-sm sm:text-base lg:text-lg max-w-sm sm:max-w-xl md:max-w-2xl mx-auto mb-6 sm:mb-10 text-gray-100 font-medium drop-shadow-sm"
             variants={itemVariants}
           >
             ProConsult International is a multi-disciplinary consulting firm that helps clients achieve success through strategic insights and practical execution.
           </motion.p>
 
+          {/* Interactive Get Started Button */}
           <motion.div 
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="w-full sm:w-auto"
           >
-            <a href="/#about-us" rel="noreferrer">
-              <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white group">
-                Get Started 
-                <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
-              </button>
-            </a>
+            {/* Interactive Get Started Button */}
+            <motion.div 
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full flex justify-center">
+              <a href="/#about-us" rel="noreferrer" className="block w-fit">
+                <button className="bg-white text-blue-900 text-sm sm:text-base px-8 sm:px-12 py-3 sm:py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-900 hover:text-white shadow-lg group whitespace-nowrap">
+                  Get Started 
+                  <span className="transition-transform duration-300 group-hover:translate-x-2">→</span>
+                </button>
+              </a>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* 2. WHY CHOOSE US SECTION */}
       <WhyChooseUsSection/>
     </>
   );
