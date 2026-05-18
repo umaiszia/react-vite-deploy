@@ -100,8 +100,7 @@ function Home() {
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// --- COUNTER COMPONENT ---
-// This handles the animation logic for the numbers
+// --- COUNTER COMPONENT (Unchanged Logic) ---
 const Counter = ({ end, duration = 3000 }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef(null);
@@ -112,11 +111,10 @@ const Counter = ({ end, duration = 3000 }) => {
       ([entry]) => {
         if (entry.isIntersecting) setStartCount(true);
       },
-      { threshold: 0.5 } // Starts when 50% of the element is visible
+      { threshold: 0.3 }
     );
 
     if (countRef.current) observer.observe(countRef.current);
-    
     return () => observer.disconnect();
   }, []);
 
@@ -124,7 +122,7 @@ const Counter = ({ end, duration = 3000 }) => {
     if (!startCount) return;
 
     let start = 0;
-    const increment = end / (duration / 16); // 16ms interval for 60fps
+    const increment = end / (duration / 16);
     
     const timer = setInterval(() => {
       start += increment;
@@ -144,164 +142,272 @@ const Counter = ({ end, duration = 3000 }) => {
 
 // --- MAIN SECTION ---
 function WhyChooseUsSection() {
+  
+  // Animation settings to match your Hero component entry behavior
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: 'spring', stiffness: 60, damping: 15 } 
+    },
+  };
+
   return (
     <>
-      <section className="py-20 px-4 bg-gray-50">
-        <div className="max-w-8xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           
-          {/* SECTION HEADER */}
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold text-blue-900 tracking-wider uppercase mb-2">
+          {/* SECTION HEADER WITH SCROLL ANIMATION */}
+          <motion.div 
+            className="text-center mb-12 sm:mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-xs sm:text-sm font-semibold text-blue-900 tracking-wider uppercase mb-2">
               WHY CHOOSE PROCONSULT INTERNATIONAL
             </p>
-            <h2 className="text-4xl font-bold text-blue-900 mb-4">What Sets Us Apart</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-4">What Sets Us Apart</h2>
             <div className="w-16 h-1 bg-blue-900 mx-auto"></div>
-          </div>
+          </motion.div>
 
-          {/* TOP ROW: 4 CARDS */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {/* TOP ROW: 4 CARDS WITH ENTRY STAGGER */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8 sm:mb-12"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
             
             {/* Card 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
-              <div className="w-1 h-auto bg-blue-900 rounded-full flex"></div>
+            <motion.div variants={itemVariants} className="bg-white p-5 sm:p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+              <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
               <div>
-                <h4 className="text-xl font-semibold text-blue-900 mb-2">Expert Team</h4>
+                <h4 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">Expert Team</h4>
                 <div className="flex items-start gap-2">
-                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <span className="text-blue-900 text-sm pt-0.5"><i className="fas fa-check"></i></span>
                   <p className="text-gray-600 text-sm">Senior consultants with Big 4 experience</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-5 sm:p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
               <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
               <div>
-                <h4 className="text-xl font-semibold text-blue-900 mb-2">Proven Trust</h4>
+                <h4 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">Proven Trust</h4>
                 <div className="flex items-start gap-2">
-                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <span className="text-blue-900 text-sm pt-0.5"><i className="fas fa-check"></i></span>
                   <p className="text-gray-600 text-sm">Trusted by leading organizations</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-5 sm:p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
               <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
               <div>
-                <h4 className="text-xl font-semibold text-blue-900 mb-2">Efficient Delivery</h4>
+                <h4 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">Efficient Delivery</h4>
                 <div className="flex items-start gap-2">
-                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <span className="text-blue-900 text-sm pt-0.5"><i className="fas fa-check"></i></span>
                   <p className="text-gray-600 text-sm">Responsive and cost-effective delivery</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Card 4 */}
-            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
+            <motion.div variants={itemVariants} className="bg-white p-5 sm:p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
               <div className="w-1 h-auto bg-blue-900 rounded-full flex-shrink-0"></div>
               <div>
-                <h4 className="text-xl font-semibold text-blue-900 mb-2">Global Standards</h4>
+                <h4 className="text-lg sm:text-xl font-semibold text-blue-900 mb-2">Global Standards</h4>
                 <div className="flex items-start gap-2">
-                  <span className="text-blue-900 text-xl pr-2"><i className="fas fa-check"></i></span>
+                  <span className="text-blue-900 text-sm pt-0.5"><i className="fas fa-check"></i></span>
                   <p className="text-gray-600 text-sm">Local presence, global standards</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-          </div>
+          </motion.div>
 
-          {/* BOTTOM ROW: STATS WITH ANIMATED COUNTERS */}
-          <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* BOTTOM ROW: STATS - Fully balanced structural alignment */}
+          <motion.div 
+            className="bg-blue-50 p-4 sm:p-6 rounded-xl border border-blue-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             
-            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-              <h3 className="text-4xl font-bold text-blue-900">
+            <div className="bg-[#a3e4fe] p-6 sm:p-8 md:p-10 rounded-lg text-center shadow-inner-sm">
+              <h3 className="text-3xl sm:text-4xl font-bold text-blue-900">
                 <Counter end={7} />+
               </h3>
-              <p className="text-blue-900 text-sm">Years Experience</p>
+              <p className="text-blue-900 text-xs sm:text-sm font-semibold mt-1">Years Experience</p>
             </div>
 
-            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-              <h3 className="text-4xl font-bold text-blue-900">
+            <div className="bg-[#a3e4fe] p-6 sm:p-8 md:p-10 rounded-lg text-center shadow-inner-sm">
+              <h3 className="text-3xl sm:text-4xl font-bold text-blue-900">
                 <Counter end={100} />+
               </h3>
-              <p className="text-blue-900 text-sm">Clients Worldwide</p>
+              <p className="text-blue-900 text-xs sm:text-sm font-semibold mt-1">Clients Worldwide</p>
             </div>
 
-            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-              <h3 className="text-4xl font-bold text-blue-900">
+            <div className="bg-[#a3e4fe] p-6 sm:p-8 md:p-10 rounded-lg text-center shadow-inner-sm">
+              <h3 className="text-3xl sm:text-4xl font-bold text-blue-900">
                 <Counter end={95} />%
               </h3>
-              <p className="text-blue-900 text-sm">Client Retention</p>
+              <p className="text-blue-900 text-xs sm:text-sm font-semibold mt-1">Client Retention</p>
             </div>
 
-            <div className="bg-[#a3e4fe] p-10 rounded-lg text-center">
-              <h3 className="text-4xl font-bold text-blue-900">
+            <div className="bg-[#a3e4fe] p-6 sm:p-8 md:p-10 rounded-lg text-center shadow-inner-sm">
+              <h3 className="text-3xl sm:text-4xl font-bold text-blue-900">
                 <Counter end={20} />+
               </h3>
-              <p className="text-blue-900 text-sm">Expert Consultants</p>
+              <p className="text-blue-900 text-xs sm:text-sm font-semibold mt-1">Expert Consultants</p>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </section>
-      {<AboutSection/>}
+      <AboutSection/>
     </>
   );
 }
 
 // Keep this function outside, but now it is being called above!
 function AboutSection() {
+  
+  // Animation settings matching your site's consistent behavior
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+        delayChildren: 0.5,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { type: 'spring', stiffness: 60, damping: 15 } 
+    },
+  };
+
   return (
     <>
-      <section className="py-16 px-4 max-w-8x1 mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-blue-900 inline-block border-b-3 pb-3">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+        
+        {/* SECTION HEADER WITH SCROLL ANIMATION */}
+        <motion.div 
+          className="text-center mb-10 sm:mb-14"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <h2 className="text-2xl sm:text-3xl font-bold text-blue-900 inline-block border-b-2 pb-3">
             About Us
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        {/* MAIN BODY CONFIGURATION */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
 
-          {/* LEFT SIDE: IMAGE WITH ZOOM ANIMATION */}
-          <div className="overflow-hidden rounded-2xl shadow-xl group">
+          {/* LEFT SIDE: IMAGE COMPONENT WITH ROLL-IN AND HOVER EFFECT */}
+          <motion.div 
+            className="overflow-hidden rounded-2xl shadow-xl group w-full aspect-[4/3] lg:aspect-auto"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ type: 'spring', stiffness: 50, damping: 15 }}
+          >
             <img
               src="/Our-Team.webp"
               alt="ProConsult Team"
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
-          </div>
+          </motion.div>
 
-          {/* RIGHT SIDE: CONTENT */}
-          <div className="flex flex-col gap-6">
-            <h3 className="text-2xl font-semibold text-blue-900 leading-tight">
+          {/* RIGHT SIDE: CONTENT WITH CONTAINER STAGGER */}
+          <motion.div 
+            className="flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.h3 
+              className="text-xl sm:text-2xl font-bold text-blue-900 leading-tight max-w-xl lg:max-w-none"
+              variants={itemVariants}
+            >
               Your Trusted Advisors - International Expertise. Local Insights.
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+            </motion.h3>
+            
+            <motion.p 
+              className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base font-medium max-w-2xl lg:max-w-none"
+              variants={itemVariants}
+            >
               At ProConsult International, we empower organizations with our strategic consulting, financial advisory, legal services, and technology-enabled solutions.
-            </p>
-            <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+            </motion.p>
+            
+            <motion.p 
+              className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base font-medium max-w-2xl lg:max-w-none"
+              variants={itemVariants}
+            >
               With a sizeable presence in Pakistan, Afghanistan and with offices in Dubai, KSA, and the UK, we are ready, willing and able to help clients across international borders.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Link to="/about" className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
+            {/* FULLY RESPONSIVE ACTION BUTTONS */}
+            <motion.div 
+              className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 mt-2 w-full sm:w-auto"
+              variants={itemVariants}
+            >
+              <Link 
+                to="/about" 
+                className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2 whitespace-nowrap shadow-sm"
+              >
                 Read More →
               </Link>
 
-              <Link to="/team" className="flex-1 min-w-[140px] py-3 bg-blue-900 text-white border-2 border-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-900 flex justify-center items-center gap-2 shadow-lg">
+              <Link 
+                to="/team" 
+                className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm bg-blue-900 text-white border-2 border-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-900 flex justify-center items-center gap-2 whitespace-nowrap shadow-md"
+              >
                 Meet Our Team →
               </Link>
               
-              <Link to="/services" className="flex-1 min-w-[140px] py-3 border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2">
+              <Link 
+                to="/services" 
+                className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2 whitespace-nowrap shadow-sm"
+              >
                 Explore Our Services →
               </Link>
 
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
+      
       <ServicesSection />
     </>
   );
