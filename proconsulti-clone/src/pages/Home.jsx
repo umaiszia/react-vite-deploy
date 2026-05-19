@@ -870,6 +870,7 @@ function TestimonialSection() {
   };
 
   return (
+    <>
     <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-blue-900 text-white overflow-hidden text-center flex flex-col items-center justify-center">
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
         
@@ -909,11 +910,11 @@ function TestimonialSection() {
           Leading logistics company with 500+ employees
         </motion.p>
 
-        {/* ANIMATED & RESPONSIVE BUTTON */}
+        {/* COMPACT ANIMATED & RESPONSIVE BUTTON */}
         <div className="w-full flex justify-center px-4">
           <motion.a 
             href="#" 
-            className="group inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 w-full max-w-xs sm:w-auto text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5"
+            className="group inline-flex items-center justify-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-sm transition-colors duration-300 text-[11px] sm:text-sm px-4 sm:px-8 py-2 sm:py-3.5 w-auto"
             variants={elementVariant}
             custom={0.45} // Triggers cleanly right after the subtitle completes its entrance
             initial="hidden"
@@ -923,140 +924,222 @@ function TestimonialSection() {
             whileTap={{ scale: 0.98 }}
           >
             Read More Case Studies
-            <span className="text-sm sm:text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
+            <span className="text-xs sm:text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
           </motion.a>
         </div>
 
       </div>
     </section>
+    <InternationalPresenceSection/>
+    </>
   );
 }
 
 
 function InternationalPresenceSection() {
+  const locations = ["Islamabad", "Kabul", "Dubai", "Manchester", "Jeddah"];
+
+  // Framer Motion animation definitions
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12 }
+    }
+  };
+
+  const itemLeftVariant = {
+    hidden: { opacity: 0, x: -40 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { type: 'spring', stiffness: 55, damping: 14, duration: 0.75 } 
+    }
+  };
+
+  const rightBlockVariant = {
+    hidden: { opacity: 0, scale: 0.95, y: 30 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 45, damping: 15, duration: 0.85 } 
+    }
+  };
+
   return (
     <>
-    <section className="py-24 px-4 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* SECTION HEADER */}
-        <div className="text-center mb-16 max-w-2xl mx-auto">
-          <p className="text-lg font-semibold text-blue-900 tracking-widest uppercase mb-2">
-            INTERNATIONAL PRESENCE
-          </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-5">
-            Our Reach Across Regions
-          </h2>
-          <div className="w-16 h-1 bg-blue-900 mx-auto mb-6"></div>
-          <p className="text-gray-600 leading-relaxed text-sm md:text-base">
-            With offices and associates across key markets, we provide localized service backed by global expertise.
-          </p>
-        </div>
-
-        {/* TWO-COLUMN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
           
-          {/* LEFT: OFFICE LISTS (The simple "Manual Way") */}
-          <div className="space-y-4">
-            <h4 className="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-300 pb-2 inline-block">
-              Office Locations:
-            </h4>
+          {/* SECTION HEADER */}
+          <motion.div 
+            className="text-center mb-10 sm:mb-16 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <p className="text-xs sm:text-sm font-semibold text-blue-900 tracking-widest uppercase mb-1 sm:mb-2">
+              INTERNATIONAL PRESENCE
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-3 sm:mb-5">
+              Our Reach Across Regions
+            </h2>
+            <div className="w-12 sm:w-16 h-1 bg-blue-900 mx-auto mb-4 sm:mb-6"></div>
+            <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base px-2">
+              With offices and associates across key markets, we provide localized service backed by global expertise.
+            </p>
+          </motion.div>
+
+          {/* TWO-COLUMN LAYOUT */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
             
-            {/* Location 1 */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
-              <p className="text-gray-700 font-medium">Islamabad</p>
-            </div>
+            {/* LEFT: STAGGERED OFFICE LISTS */}
+            <motion.div 
+              className="space-y-3 sm:space-y-4 w-full"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full text-center sm:text-left">
+                <h4 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4 sm:mb-6 border-b-2 border-blue-300 pb-2 inline-block">
+                  Office Locations:
+                </h4>
+              </div>
+              
+              {locations.map((city, idx) => (
+                <motion.div 
+                  key={idx}
+                  variants={itemLeftVariant}
+                  className="bg-white p-4 sm:p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow duration-300"
+                >
+                  <span className="w-2 h-2 bg-blue-900 rounded-full flex-shrink-0"></span>
+                  <p className="text-gray-700 text-sm sm:text-base font-medium">{city}</p>
+                </motion.div>
+              ))}
+            </motion.div>
 
-            {/* Location 2 */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
-              <p className="text-gray-700 font-medium">Kabul</p>
-            </div>
+            {/* RIGHT: ANIMATED MAP CARD AND COMPACT RESPONSIVE BUTTON */}
+            <motion.div 
+              className="relative p-4 sm:p-6 md:p-8 rounded-2xl border border-gray-200 shadow-md sm:shadow-lg bg-white overflow-hidden flex flex-col items-center w-full"
+              variants={rightBlockVariant}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              
+              {/* Map Graphic Container */}
+              <div className="overflow-hidden rounded-xl mb-6 sm:mb-10 w-full flex justify-center">
+                <img 
+                  src="/proconsultimap.webp" 
+                  alt="Global Reach Map" 
+                  className="w-full h-auto max-w-md sm:max-w-xl object-contain transition-transform duration-500 ease-out hover:scale-103"
+                />
+              </div>
 
-            {/* Location 3 */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
-              <p className="text-gray-700 font-medium">Dubai</p>
-            </div>
+              {/* COMPACT BUTTON SOLUTION */}
+              <div className="w-full flex justify-center px-2">
+                <motion.a 
+                  href="#" 
+                  className="group inline-flex items-center justify-center gap-1.5 bg-blue-700 hover:bg-blue-600 text-white font-semibold rounded-md shadow-sm transition-colors duration-300 text-[11px] sm:text-sm px-4 sm:px-8 py-2 sm:py-3.5 w-auto"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Learn More 
+                  <span className="text-xs sm:text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
+                </motion.a>
+              </div>
 
-            {/* Location 4 */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
-              <p className="text-gray-700 font-medium">Manchester</p>
-            </div>
-
-            {/* Location 5 */}
-            <div className="bg-white p-5 rounded-lg shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <span className="w-2 h-2 bg-blue-900 rounded-full"></span>
-              <p className="text-gray-700 font-medium">Jeddah</p>
-            </div>
-
-          </div>
-
-          {/* RIGHT: ANIMATED MAP AND BUTTON (Clean Design) */}
-          <div className="relative p-6 md:p-8 rounded-2xl border border-gray-200 shadow-lg bg-white overflow-hidden flex flex-col items-center">
-            
-            {/* The Animated Map Image - Wraps around the image for simplicity */}
-            <div className="overflow-hidden rounded-xl mb-10 w-full flex justify-center">
-              <img 
-                src="/proconsultimap.webp" // --- PLACE YOUR MAP IMAGE HERE ---
-                alt="Global Reach Map" 
-                className="w-full h-auto max-w-xl object-contain animate-fade-in-down transition-transform duration-1000 ease-out hover:scale-105"
-              />
-            </div>
-
-            {/* The Working Link Button (Matches Testimonial Style) */}
-            <a href="#" target="_blank" rel="noreferrer" >
-          <button className="bg-blue-700 hover:bg-blue-500 text-white hover:text-white font-semibold py-3 px-8 rounded-md transition-colors duration-300 flex items-center gap-2 mx-auto">
-            Learn More 
-            <span>→</span>
-          </button>
-          </a>
+            </motion.div>
 
           </div>
 
         </div>
-
-      </div>
-    </section>
-    <GrowTogetherSection/>
+      </section>
+      
+      <GrowTogetherSection />
     </>
   );
 }
+
+
 function GrowTogetherSection() {
+  
+  // Sequential fade-and-rise entrance variant
+  const elementVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (customDelay) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 0.9,
+        delay: customDelay
+      }
+    })
+  };
+
   return (
-    <section className="py-20 px-4 bg-blue-900 text-white">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="py-14 sm:py-20 md:py-24 px-4 sm:px-6 bg-blue-900 text-white overflow-hidden text-center flex flex-col items-center justify-center">
+      <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
         
-        {/* Header Text */}
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        {/* HEADER TEXT */}
+        <motion.h2 
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 tracking-tight"
+          variants={elementVariant}
+          custom={0}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           Let's Grow Together
-        </h2>
+        </motion.h2>
 
-        {/* Subtext */}
-        <p className="text-blue-100 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+        {/* SUBTEXT */}
+        <motion.p 
+          className="text-blue-100 text-xs sm:text-sm md:text-base max-w-xl sm:max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10 px-2"
+          variants={elementVariant}
+          custom={0.15}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           Ready to move your organization forward? Let's explore how the ProConsult group can help you.
-        </p>
+        </motion.p>
 
-        {/* Buttons Row */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+        {/* BUTTONS CONTAINER - Keeps inline buttons row-aligned down to tiny mobile displays */}
+        <motion.div 
+          className="flex flex-row items-center justify-center gap-3 sm:gap-4 w-auto px-2"
+          variants={elementVariant}
+          custom={0.3}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           
-          {/* Contact Us Button (White) */}
-          <a href="#" target="_blank" rel="noreferrer">
-            <button className="bg-white text-blue-900 px-12 py-4 rounded-full font-bold flex items-center gap-2 mx-auto transition-all duration-300 hover:bg-blue-600 hover:text-white">
-              Contact Us <span>→</span>
-            </button>
-          </a>
+          {/* CONTACT US BUTTON */}
+          <motion.a 
+            href="#" 
+            className="group inline-flex items-center justify-center gap-1.5 bg-white text-blue-900 font-bold rounded-full shadow-sm transition-all duration-300 hover:bg-blue-600 hover:text-white text-[11px] sm:text-sm px-4 sm:px-8 py-2 sm:py-3.5 w-auto"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Contact Us 
+            <span className="text-xs sm:text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </motion.a>
 
-          {/* Request a Demo Button (Outline) */}
-          <a href="/demo" target="_blank" rel="noreferrer">
-            <button className="w-full sm:w-auto border-2 border-white text-white font-bold py-4 px-10 rounded-full hover:bg-white hover:text-blue-900 transition-all duration-300 text-center">
-              Request a Demo
-            </button>
-          </a>
+          {/* REQUEST A DEMO BUTTON */}
+          <motion.a 
+            href="/demo" 
+            className="inline-flex items-center justify-center border-2 border-white text-white font-bold rounded-full shadow-sm transition-all duration-300 hover:bg-white hover:text-blue-900 text-[11px] sm:text-sm px-4 sm:px-8 py-2 sm:py-3"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Request a Demo
+          </motion.a>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>
