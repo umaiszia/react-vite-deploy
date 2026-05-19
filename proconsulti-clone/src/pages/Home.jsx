@@ -190,8 +190,7 @@ function WhyChooseUsSection() {
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-          >
+            viewport={{ once: true, margin: "-50px" }}>
             
             {/* Card 1 */}
             <motion.div variants={itemVariants} className="bg-white p-5 sm:p-6 rounded-lg shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow duration-300">
@@ -249,8 +248,7 @@ function WhyChooseUsSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+            transition={{ duration: 0.5, delay: 0.2 }}>
             
             <div className="bg-[#a3e4fe] p-6 sm:p-8 md:p-10 rounded-lg text-center shadow-inner-sm">
               <h3 className="text-3xl sm:text-4xl font-bold text-blue-900">
@@ -413,358 +411,363 @@ function AboutSection() {
   );
 }
 
+
 function ServicesSection() {
   
+  // Custom, slightly longer animations (duration: 0.85s) with a smooth spring feel
+  const slideInLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { type: 'spring', stiffness: 45, damping: 14, duration: 0.85 } 
+    }
+  };
+
+  const slideInRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { 
+      opacity: 1, 
+      x: 0, 
+      transition: { type: 'spring', stiffness: 45, damping: 14, duration: 0.85 } 
+    }
+  };
+
+  const scaleUp = {
+    hidden: { opacity: 0, scale: 0.92, y: 30 },
+    visible: { 
+      opacity: 1, 
+      scale: 1,
+      y: 0,
+      transition: { type: 'spring', stiffness: 40, damping: 15, duration: 0.85 } 
+    }
+  };
+
+  const slideUpSmooth = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { ease: 'easeOut', duration: 0.85 } 
+    }
+  };
+
   return (
     <>
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-50 overflow-hidden">
+        <div className="max-w-7xl mx-auto">
 
-        {/* SECTION HEADER */}
-        <div className="text-center mb-16">
-          <div className="w-12 h-1 bg-blue-900 mx-auto mb-4"></div>
-          <h2 className="text-4xl font-bold text-blue-900 mb-4 text-center">Our Services</h2>
-          <p className="text-gray-600 max-w-4xl mx-auto text-center">
-            At ProConsult International, we partner with clients to deliver tailored solutions that drive sustainable growth, operational excellence, and long-term value.
-          </p>
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              IFRS 16 Leases Compliance Software Solution
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our IFRS 16 Leases Compliance Software is a robust, automated solution designed to simplify lease accounting and ensure full compliance with IFRS 16 standards. Tailored for financial institutions, telecom operators, leasing companies, and asset-intensive organizations, our software enables accurate lease classification, liability recognition, and right-of-use asset tracking.
+          {/* SECTION HEADER */}
+          <motion.div 
+            className="text-center mb-10 sm:mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="w-12 h-1 bg-blue-900 mx-auto mb-4"></div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
+              Our Services
+            </h2>
+            <p className="text-gray-600 max-w-4xl mx-auto text-xs sm:text-sm md:text-base font-medium leading-relaxed px-2">
+              At ProConsult International, we partner with clients to deliver tailored solutions that drive sustainable growth, operational excellence, and long-term value.
             </p>
+          </motion.div>
 
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Explore more about IFRS 16 Compliance Solution
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
+          {/* SERVICE CARDS CONTAINER */}
+          <div className="flex flex-col gap-6 sm:gap-10">
+
+            {/* CARD 1: Slide In Left */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  IFRS 16 Leases Compliance Software Solution
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Our IFRS 16 Leases Compliance Software is a robust, automated solution designed to simplify lease accounting and ensure full compliance with IFRS 16 standards. Tailored for financial institutions, telecom operators, leasing companies, and asset-intensive organizations, our software enables accurate lease classification, liability recognition, and right-of-use asset tracking.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Explore more about IFRS 16 Compliance Solution
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+              <div className="w-full md:w-1/3 flex justify-center order-1 md:order-2">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo1.webp" alt="IFRS 16 Diagram" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 2: Slide In Right */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full md:w-1/3 flex justify-center">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo2.webp" alt="IFRS 9 Diagram" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  IFRS 9 Impairment Solution Pro (ISP)
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Our innovative IFRS 9 Impairment Solution Pro (ISP) helps financial institutions calculate expected credit losses (ECL) in compliance with IFRS 9 requirements. ISP integrates advanced ECL engines, including PD, LGD, and Staging modules, while incorporating forward-looking macroeconomic factors. Designed for banks, fintechs, and financial companies, ISP ensures accurate impairment calculations and regulatory compliance.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about IFRS 9 Services
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* CARD 3: Scale Up Feel */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={scaleUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Financial Reporting & Advisory Solutions
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Our team of accounting specialists provides end-to-end financial reporting advisory services, including assistance with IFRS and GAAP compliance, preparation of financial statements, and implementation of best practices. We help organizations navigate complex accounting standards, optimize financial reporting processes, and achieve regulatory compliance.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about Financial Reporting & Advisory Solutions
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+              <div className="w-full md:w-1/3 flex justify-center order-1 md:order-2">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo3.webp" alt="Financial Reporting Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 4: Smooth Slide Up */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideUpSmooth}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full md:w-1/3 flex justify-center">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo4.webp" alt="Business Consulting Graphic" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Expert Business Consulting Services for Sustainable Growth
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Our team of seasoned business advisory consultants combines financial expertise, strategic planning, and industry-specific knowledge to help organizations navigate complexity, optimize performance, and achieve sustainable growth. We deliver actionable solutions tailored to your unique business challenges.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about Our Business Advisory Services
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* CARD 5: Slide In Left */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Expert Audit & Assurance Services
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Our certified audit professionals offer comprehensive audit and assurance services designed to enhance financial transparency, strengthen regulatory compliance, and drive operational excellence. Partner with us to ensure your financial statements meet global standards and support sustainable business growth.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Audit & Assurances services.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+              <div className="w-full md:w-1/3 flex justify-center order-1 md:order-2">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo5.webp" alt="Audit & Assurance Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 6: Slide In Right */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full md:w-1/3 flex justify-center">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo6.webp" alt="Tax Compliance Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Tax Compliance & Advisory Services
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Stay ahead of complex tax regulations with our expert tax compliance and advisory services. Our team ensures accurate and timely business income tax filings, reducing risk and enhancing regulatory compliance. We handle every aspect of corporate tax filing from preparation to submission.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Tax Compliance & Advisory Services.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* CARD 7: Scale Up Feel */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={scaleUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Legal Advisory & Expert Opinions
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Navigate complex corporate and regulatory challenges with confidence through our expert legal advisory services. We provide authoritative guidance on compliance, corporate governance, and strategic business decisions. Our actionable opinions are backed by thorough research.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Legal Advisory & Expert Opinions.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+              <div className="w-full md:w-1/3 flex justify-center order-1 md:order-2">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo7.webp" alt="Legal Advisory Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 8: Smooth Slide Up */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideUpSmooth}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full md:w-1/3 flex justify-center">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo8.webp" alt="Sustainability Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Empowering Sustainable Business Practices
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  We help organizations build resilient, sustainable operations that align with global standards. Our services cover every aspect of sustainability, from strategy to implementation, ensuring your business thrives in an evolving regulatory landscape.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Empowering Sustainable Business.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </motion.div>
+
+            {/* CARD 9: Slide In Left */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Human Resource Services
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Unlock the full potential of your workforce with our comprehensive human resource services designed to drive organizational excellence. From executive search and C-level assessments to performance appraisals and total reward design, we provide tailored solutions that enhance leadership effectiveness and workforce engagement.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Human Resource services.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+              <div className="w-full md:w-1/3 flex justify-center order-1 md:order-2">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo9.webp" alt="Human Resource Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* CARD 10: Slide In Right */}
+            <motion.div 
+              className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center gap-6 md:gap-10 hover:shadow-md transition-shadow duration-300"
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+            >
+              <div className="w-full md:w-1/3 flex justify-center">
+                <div className="relative p-2 rounded-full group transition-transform duration-500 hover:scale-105">
+                  <img src="/logo10.webp" alt="Information Technology Asset" className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 object-contain" />
+                </div>
+              </div>
+              <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 w-full text-center md:text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
+                  Professional IT Services for Businesses
+                </h3>
+                <div className="w-16 h-0.5 bg-green-400 mb-4 sm:mb-6 mx-auto md:mx-0"></div>
+                <p className="text-gray-600 leading-relaxed text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
+                  Empower your organization with cutting-edge IT solutions designed to boost productivity, enhance security, and drive sustainable growth. Our team of finance and technology experts delivers enterprise-grade systems that integrate seamlessly with your financial workflows and business goals.
+                </p>
+                <a href="#" className="text-blue-600 text-xs sm:text-sm font-semibold hover:text-blue-800 flex items-center justify-center md:justify-start gap-2 group">
+                  Learn more about our Information Technology Solutions.
+                  <span className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              </div>
+            </motion.div>
+
           </div>
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo1.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
         </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo2.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              IFRS 9 Impairment Solution Pro (ISP)
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our innovative IFRS 9 Impairment Solution Pro (ISP) helps financial institutions calculate expected credit losses (ECL) in compliance with IFRS 9 requirements. ISP integrates advanced ECL engines, including PD, LGD, and Staging modules, while incorporating forward-looking macroeconomic factors. Designed for banks, fintechs, and financial companies, ISP ensures accurate impairment calculations and regulatory compliance.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about IFRS 9 Services
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Financial Reporting & Advisory Solutions
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our team of accounting specialists provides end-to-end financial reporting advisory services, including assistance with IFRS and GAAP compliance, preparation of financial statements, and implementation of best practices. We help organizations navigate complex accounting standards, optimize financial reporting processes, and achieve regulatory compliance. Our solutions are tailored to banks, fintechs, and large corporations seeking expert guidance on accounting treatments and disclosures.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about Financial Reporting & Advisory Solutions
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo3.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo4.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Expert Business Consulting Services for Sustainable Growth
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our team of seasoned business advisory consultants combines financial expertise, strategic planning, and industry-specific knowledge to help organizations navigate complexity, optimize performance, and achieve sustainable growth. We deliver actionable solutions tailored to your unique business challenges and industry requirements.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about Our Business Advisory Services
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Expert Audit & Assurance Services
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Our certified audit professionals offer comprehensive audit and assurance services designed to enhance financial transparency, strengthen regulatory compliance, and drive operational excellence. With a deep understanding of industry-specific challenges, we deliver independent, high-quality audits that build stakeholder trust and empower confident decision-making. Partner with us to ensure your financial statements meet global standards and support sustainable business growth.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Audit & Assurances services.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo5.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo6.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Tax Compliance & Advisory Services
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Stay ahead of complex tax regulations with our expert tax compliance and advisory services. Our team ensures accurate and timely business income tax filings, reducing risk and enhancing regulatory compliance. We handle every aspect of corporate tax filing-from preparation to submission-minimizing errors and ensuring your business remains compliant with the latest tax laws. Let us simplify tax management so you can focus on growth.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Tax Compliance & Advisory Services.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Legal Advisory & Expert Opinions
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Navigate complex corporate and regulatory challenges with confidence through our expert legal advisory services. We provide authoritative guidance on compliance, corporate governance, and strategic business decisions. Our actionable opinions are backed by thorough research and legal precedent, empowering your organization to make informed decisions and mitigate risks effectively.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Legal Advisory & Expert Opinions.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo7.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo8.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Empowering Sustainable Business Practices
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              We help organizations build resilient, sustainable operations that align with global standards. Our services cover every aspect of sustainability, from strategy to implementation, ensuring your business thrives in an evolving regulatory landscape.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Empowering Sustainable Business.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Human Resource Services
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Unlock the full potential of your workforce with our comprehensive human resource services designed to drive organizational excellence. From executive search and C-level assessments to performance appraisals and total reward design, we provide tailored solutions that enhance leadership effectiveness and workforce engagement. Our expertise extends to HR technology implementation, international employee mobility, and training programs-including technical, vocational, and industry-specific IFRS training. Whether it’s HR audits, corporate restructuring, compensation strategy, or diversity and inclusion initiatives, we empower businesses to thrive in today’s dynamic landscape. Let our team of experts transform your HR challenges into opportunities for growth.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Human Resource services.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo9.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-        </div>
-
-        {/* SERVICE CARD (Wide Layout) */}
-        <div className="bg-white rounded-xl border border-gray-100 mt-10 shadow-sm p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 hover:shadow-md transition-shadow duration-300">
-
-          {/* RIGHT: CIRCULAR GRAPHIC */}
-          <div className="w-full md:w-1/3 flex justify-center">
-            <div className="relative p-4 rounded-full group">
-              {/* Replace with your actual circular image asset */}
-              <img
-                src="/logo10.webp"
-                alt="IFRS 16 Diagram"
-                className="w-48 h-48 md:w-64 md:h-64 object-contain" />
-            </div>
-          </div>
-
-          {/* LEFT: TEXT CONTENT (Takes up more space for that 8x1 feel) */}
-          <div className="flex-1 border-l-4 border-blue-400 pl-6">
-            <h3 className="text-2xl font-bold text-blue-900 mb-2">
-              Professional IT Services for Businesses
-            </h3>
-            <div className="w-16 h-0.5 bg-green-400 mb-6"></div>
-
-            <p className="text-gray-600 leading-relaxed mb-6">
-              Empower your organization with cutting-edge IT solutions designed to boost productivity, enhance security, and drive sustainable growth. Our team of finance and technology experts delivers enterprise-grade systems that integrate seamlessly with your financial workflows and business goals. From ERP implementation to data management, we build IT infrastructures that provide measurable ROI and support your evolving needs in an ever-changing digital landscape.
-            </p>
-
-            <a href="#" className="text-blue-600 font-semibold hover:text-blue-800 flex items-center gap-2 group">
-              Learn more about our Information Technology Solutions.
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-    
-    <MembershipSection/>  
+      </section>
+      
+      <MembershipSection />   
     </>
   );
 }
+
+
+
 function MembershipSection() {
   const associations = [
     { name: "ICAP", desc: <a href="#" className="text-black hover:text-blue-500">Institute of Chartered Accountants of Pakistan (ICAP)</a>, img: "/membershiplogo1.webp" },
@@ -775,74 +778,160 @@ function MembershipSection() {
     { name: "BOI", desc: <a href="#" className="text-black hover:text-blue-500">Board of Investment Pakistan (BOI)</a>, img: "/membershiplogo6.webp" }
   ];
 
+  // Slightly elongated, smooth fade-and-rise variant
+  const cardVariant = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (index) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 15,
+        duration: 0.9,
+        // Staggers the animation slightly depending on its position in the grid
+        delay: (index % 3) * 0.25 
+      }
+    })
+  };
+
   return (
     <>
-    <section className="py-20 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
-        
-        {/* SECTION HEADER - Matches Services Style */}
-        <div className="text-center mb-16">
-          <div className="w-12 h-1 bg-blue-900 mx-auto mb-4"></div>
-          <h2 className="text-4xl font-bold text-blue-900 mb-4">Membership & Associations</h2>
-          <p className="text-gray-600 max-w-4xl mx-auto">
-            Proconsult International is an SECP-incorporated consulting firm, registered with leading financial and trade bodies.
-          </p>
+      <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          
+          {/* SECTION HEADER - Fully responsive text & matching services layout */}
+          <motion.div 
+            className="text-center mb-10 sm:mb-16"
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.9 }}
+          >
+            <div className="w-12 h-1 bg-blue-900 mx-auto mb-4"></div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-900 mb-3 sm:mb-4">
+              Membership & Associations
+            </h2>
+            <p className="text-gray-600 max-w-4xl mx-auto text-xs sm:text-sm md:text-base font-medium leading-relaxed px-2">
+              Proconsult International is an SECP-incorporated consulting firm, registered with leading financial and trade bodies.
+            </p>
+          </motion.div>
+
+          {/* RESPONSIVE GRID LAYOUT */}
+          {/* 1 col on Mobile, 2 cols on Tablets, 3 cols on small laptops and up */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
+            {associations.map((item, index) => (
+              <motion.div 
+                key={index} 
+                className="bg-white rounded-xl border border-gray-100 shadow-sm p-6 sm:p-8 md:p-10 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow duration-300"
+                custom={index}
+                variants={cardVariant}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-40px" }}
+              >
+                {/* Responsive logo container with auto-scaling behavior */}
+                <div className="h-16 sm:h-20 md:h-24 w-full flex items-center justify-center mb-4 sm:mb-6">
+                  <img 
+                    src={item.img} 
+                    alt={item.name} 
+                    className="max-h-full max-w-[80%] sm:max-w-full w-auto object-contain transition-transform duration-500 hover:scale-105" 
+                  />
+                </div>
+                <h4 className="text-gray-700 font-medium text-xs sm:text-sm md:text-base leading-relaxed px-1">
+                  {item.desc}
+                </h4>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
-
-        {/* 3x3 GRID LAYOUT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {associations.map((item, index) => (
-            <div key={index} className="bg-white rounded-xl border border-gray-100 shadow-sm p-10 flex flex-col items-center justify-center text-center hover:shadow-md transition-shadow duration-300">
-              <div className="h-24 flex items-center justify-center mb-6">
-                <img src={item.img} alt={item.name} className="max-h-full w-auto object-contain" />
-              </div>
-              <h4 className="text-gray-700 font-medium text-sm md:text-base leading-relaxed">
-                {item.desc}
-              </h4>
-            </div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-    <TestimonialSection/>
-    </>
-  );
-  
-} 
-
-function TestimonialSection() {
-  return (
-  <>
-    <section className="py-20 px-4 bg-blue-900 text-white relative overflow-hidden">
-
-      <div className="max-w-4xl mx-auto text-center relative z-10">
-        {/* The Quote */}
-        <h2 className="text-xl md:text-3xl italic font-medium leading-relaxed mb-8">
-          "ProConsult played a critical role in transforming our finance function. 
-          Their strategic insight and hands-on approach helped us scale with confidence."
-        </h2>
-
-        {/* The Author */}
-        <div className="mb-10">
-          <p className="font-bold text-lg">- CFO, Regional Logistics Group</p>
-          <p className="text-blue-200 text-sm">Leading logistics company with 500+ employees</p>
-        </div>
-
-        {/* The Button */}
-        <a href="#" target="_blank" rel="noreferrer" >
-          <button className="bg-blue-700 hover:bg-white text-white hover:text-blue-900 font-semibold py-3 px-8 rounded-md transition-colors duration-300 flex items-center gap-2 mx-auto">
-            Read More Case Studies 
-            <span>→</span>
-          </button>
-        </a>
-      </div>
-
-    </section>
-    <InternationalPresenceSection/>
+      </section>
+      <TestimonialSection />
     </>
   );
 }
+
+
+function TestimonialSection() {
+  
+  // Clean text and element fade-and-rise animation variant
+  const elementVariant = {
+    hidden: { opacity: 0, y: 25 },
+    visible: (customDelay) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        ease: 'easeOut',
+        duration: 0.8,
+        delay: customDelay
+      }
+    })
+  };
+
+  return (
+    <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 bg-blue-900 text-white overflow-hidden text-center flex flex-col items-center justify-center">
+      <div className="max-w-4xl mx-auto w-full flex flex-col items-center">
+        
+        {/* THE QUOTE TEXT */}
+        <motion.p 
+          className="font-medium italic leading-relaxed text-base sm:text-xl md:text-2xl lg:text-3xl max-w-3xl mb-6 sm:mb-8 px-2 sm:px-4"
+          variants={elementVariant}
+          custom={0}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
+          "ProConsult played a critical role in transforming our finance function. Their strategic insight and hands-on approach helped us scale with confidence."
+        </motion.p>
+
+        {/* AUTHOR NAME */}
+        <motion.h4 
+          className="font-bold tracking-wide text-sm sm:text-base md:text-lg mb-1"
+          variants={elementVariant}
+          custom={0.2}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
+          - CFO, Regional Logistics Group
+        </motion.h4>
+
+        {/* AUTHOR SUBTITLE */}
+        <motion.p 
+          className="text-blue-200 font-light tracking-normal text-xs sm:text-sm mb-8 sm:mb-10"
+          variants={elementVariant}
+          custom={0.3}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
+          Leading logistics company with 500+ employees
+        </motion.p>
+
+        {/* ANIMATED & RESPONSIVE BUTTON */}
+        <div className="w-full flex justify-center px-4">
+          <motion.a 
+            href="#" 
+            className="group inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 w-full max-w-xs sm:w-auto text-xs sm:text-sm px-6 sm:px-8 py-3 sm:py-3.5"
+            variants={elementVariant}
+            custom={0.45} // Triggers cleanly right after the subtitle completes its entrance
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Read More Case Studies
+            <span className="text-sm sm:text-base transition-transform duration-200 group-hover:translate-x-1">→</span>
+          </motion.a>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 
 function InternationalPresenceSection() {
   return (
