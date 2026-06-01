@@ -289,8 +289,21 @@ function WhyChooseUsSection() {
 
 // Keep this function outside, but now it is being called above!
 function AboutSection() {
+  const servicesRef = useRef(null);
+
+  const handleScrollToServices = (e) => {
+    e.preventDefault();
+    servicesRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
+  // FORCES THE WINDOW TO JUMP TO THE TOP BEFORE THE ABOUT PAGE RENDERS
+  const handlePageTransitionTop = () => {
+    window.scrollTo(0, 0);
+  };
   
-  // Animation settings matching your site's consistent behavior
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -331,7 +344,7 @@ function AboutSection() {
         {/* MAIN BODY CONFIGURATION */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
 
-          {/* LEFT SIDE: IMAGE COMPONENT WITH ROLL-IN AND HOVER EFFECT */}
+          {/* LEFT SIDE: IMAGE */}
           <motion.div 
             className="overflow-hidden rounded-2xl shadow-xl group w-full aspect-[4/3] lg:aspect-auto"
             initial={{ opacity: 0, x: -40 }}
@@ -346,7 +359,7 @@ function AboutSection() {
             />
           </motion.div>
 
-          {/* RIGHT SIDE: CONTENT WITH CONTAINER STAGGER */}
+          {/* RIGHT SIDE: CONTENT */}
           <motion.div 
             className="flex flex-col gap-4 sm:gap-6 text-center lg:text-left items-center lg:items-start"
             variants={containerVariants}
@@ -380,8 +393,10 @@ function AboutSection() {
               className="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 mt-2 w-full sm:w-auto"
               variants={itemVariants}
             >
+              {/* FIXED: Added onClick event to scroll the screen up immediately */}
               <Link 
                 to="/about" 
+                onClick={handlePageTransitionTop}
                 className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2 whitespace-nowrap shadow-sm"
               >
                 Read More →
@@ -389,24 +404,28 @@ function AboutSection() {
 
               <Link 
                 to="/team" 
+                onClick={handlePageTransitionTop}
                 className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm bg-blue-900 text-white border-2 border-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-white hover:text-blue-900 flex justify-center items-center gap-2 whitespace-nowrap shadow-md"
               >
                 Meet Our Team →
               </Link>
               
-              <Link 
-                to="/services" 
-                className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2 whitespace-nowrap shadow-sm"
+              <a 
+                href="#services"
+                onClick={handleScrollToServices}
+                className="w-full sm:w-fit min-w-[150px] px-6 py-2.5 sm:py-3 text-xs sm:text-sm border-2 border-blue-900 text-blue-900 font-bold rounded-full transition-all duration-300 hover:bg-blue-900 hover:text-white flex justify-center items-center gap-2 whitespace-nowrap shadow-sm cursor-pointer"
               >
                 Explore Our Services →
-              </Link>
+              </a>
 
             </motion.div>
           </motion.div>
         </div>
       </section>
       
-      <ServicesSection />
+      <div ref={servicesRef} id="services" className="scroll-mt-4">
+        <ServicesSection />
+      </div>
     </>
   );
 }
