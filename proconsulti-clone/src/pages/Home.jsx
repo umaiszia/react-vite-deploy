@@ -614,8 +614,7 @@ function ServicesSection() {
               variants={slideInLeft}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-40px" }}
-            >
+              viewport={{ once: true, margin: "-40px" }}>
               <div className="flex-1 border-l-4 border-blue-400 pl-4 sm:pl-6 order-2 md:order-1 w-full text-center md:text-left">
                 <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-2">
                   Expert Audit & Assurance Services
