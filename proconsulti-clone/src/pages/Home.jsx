@@ -8,8 +8,8 @@ function Home() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.25,
-        delayChildren: 0.2,
+        staggerChildren: 0.35,
+        delayChildren: 0.3,
       },
     },
   };
@@ -148,8 +148,8 @@ function WhyChooseUsSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
+        staggerChildren: 0.35,
+        delayChildren: 0.3,
       },
     },
   };
@@ -174,7 +174,7 @@ function WhyChooseUsSection() {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
             <p className="text-[10px] sm:text-xs font-bold text-slate-400 tracking-widest uppercase mb-3">
               WHY CHOOSE PROCONSULT INTERNATIONAL
@@ -246,7 +246,7 @@ function WhyChooseUsSection() {
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 0.05 }}
+            transition={{ duration: 0.8, delay: 0.15 }}
           >
             
             {/* Stat Block 1 */}
@@ -493,7 +493,7 @@ function ServicesSection() {
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { ease: 'easeOut', duration: 0.6 } 
+      transition: { ease: 'easeOut', duration: 0.8 } 
     }
   };
 
@@ -509,7 +509,7 @@ function ServicesSection() {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.8 }}
           >
             <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
               Our Services
@@ -823,7 +823,7 @@ function MembershipSection() {
         type: 'spring',
         stiffness: 55,
         damping: 16,
-        delay: (index % 3) * 0.15 
+        delay: (index % 3) * 0.25 
       }
     })
   };
@@ -839,7 +839,7 @@ function MembershipSection() {
             initial={{ opacity: 0, y: -10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
             <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
               Membership & Associations
