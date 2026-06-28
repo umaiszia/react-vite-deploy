@@ -9,7 +9,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="w-full sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100 font-['Montserrat'] tracking-wide">
+    <nav className="w-full sticky top-0 z-50 bg-white shadow-sm border-b border-slate-100 font-['Poppins',_sans-serif] tracking-wide">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 relative">
         
         {/* HAMBURGER (Left) */}

@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="bg-white p-5 md:p-10 border-t border-slate-100 font-['Montserrat'] tracking-wide transition-all duration-300">
+    <footer className="bg-white p-5 md:p-10 border-t border-slate-100 font-['Poppins',_sans-serif] tracking-wide transition-all duration-300">
       
       {/* 1. THE MAIN BOX (Centers everything) */}
       <div className="max-w-7xl mx-auto">

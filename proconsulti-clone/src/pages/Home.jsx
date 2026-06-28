@@ -27,7 +27,7 @@ function Home() {
   return (
     <>
       {/* 1. HERO SECTION */}
-      <div className="relative h-[480px] sm:h-[600px] lg:h-[800px] w-full overflow-hidden flex items-center font-sans">
+      <div className="relative h-[480px] sm:h-[600px] lg:h-[800px] w-full overflow-hidden flex items-center">
         
         {/* Background Video */}
         <video
@@ -52,9 +52,9 @@ function Home() {
             initial="hidden"
             animate="visible"
           >
-            {/* Premium Header Typography */}
+            {/* Premium Header Typography - Custom Poppins Styling */}
             <motion.h1 
-              className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-5 leading-[1.15] tracking-tight text-white"
+              className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-5 leading-[1.15] tracking-tight text-white font-['Poppins',_sans-serif]"
               variants={itemVariants}
             >
               Proactive, <br className="md:hidden" /> 
@@ -62,9 +62,9 @@ function Home() {
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300 md:from-white md:to-white">Professional</span>
             </motion.h1>
 
-            {/* Subtext Paragraph Text Scaling */}
+            {/* Subtext Paragraph Text Scaling - Custom Inter Styling */}
             <motion.p 
-              className="text-xs sm:text-base lg:text-[17px] leading-relaxed text-slate-300 font-medium mb-6 sm:mb-8 max-w-xs sm:max-w-lg md:max-w-xl"
+              className="text-xs sm:text-base lg:text-[17px] leading-relaxed text-slate-300 font-medium mb-6 sm:mb-8 max-w-xs sm:max-w-lg md:max-w-xl font-['Inter',_sans-serif]"
               variants={itemVariants}
             >
               ProConsult International is a multi-disciplinary consulting firm that helps clients achieve success through strategic insights and practical execution.
@@ -80,10 +80,10 @@ function Home() {
               <a href="/#about-us" className="inline-block w-auto">
                 {/* 
                   Optimized for mobile:
-                  - Used text-[11px] instead of text-xs for crisp, micro-copy typography on small viewports.
+                  - Used text-[11px] instead of text-xs for micro-copy typography on small viewports.
                   - Reduced padding from px-6 py-3.5 down to px-4 py-2.5 on mobile so it looks balanced.
                 */}
-                <button className="w-fit bg-blue-600 text-white text-[11px] sm:text-sm px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2.5 sm:gap-3 transition-all duration-300 hover:bg-blue-700 shadow-lg shadow-blue-900/20 group whitespace-nowrap border border-blue-500/20">
+                <button className="w-fit bg-blue-600 text-white text-[11px] sm:text-sm px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-lg font-semibold flex items-center justify-center gap-2.5 sm:gap-3 transition-all duration-300 hover:bg-blue-700 shadow-lg shadow-blue-900/20 group whitespace-nowrap border border-blue-500/20 font-['Poppins',_sans-serif]">
                   Get Started 
                   <i className="fas fa-arrow-right text-[10px] sm:text-[11px] transition-transform duration-300 group-hover:translate-x-1.5"></i>
                 </button>
@@ -99,7 +99,9 @@ function Home() {
 }
 
 
+
 import React, { useState, useEffect, useRef } from 'react';
+
 // --- COUNTER COMPONENT (Unchanged Logic) ---
 const Counter = ({ end, duration = 3000 }) => {
   const [count, setCount] = useState(0);
@@ -165,7 +167,7 @@ function WhyChooseUsSection() {
 
   return (
     <>
-      <section className="py-16 sm:py-20 md:py-28 px-6 bg-slate-50/50 overflow-hidden font-sans">
+      <section className="py-16 sm:py-20 md:py-28 px-6 bg-slate-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           {/* SECTION HEADER */}
@@ -176,10 +178,10 @@ function WhyChooseUsSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-[10px] sm:text-xs font-bold text-slate-400 tracking-widest uppercase mb-3">
+            <p className="text-[10px] sm:text-xs font-bold text-slate-400 tracking-widest uppercase mb-3 font-['Poppins',_sans-serif]">
               WHY CHOOSE PROCONSULT INTERNATIONAL
             </p>
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-4 font-['Poppins',_sans-serif]">
               What Sets Us Apart
             </h2>
             <div className="w-10 h-[2px] bg-slate-900 mx-auto"></div>
@@ -200,8 +202,8 @@ function WhyChooseUsSection() {
                 <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center text-slate-700 mb-4 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                   <i className="fas fa-user-tie text-xs"></i>
                 </div>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2">Expert Team</h4>
-                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed">Senior consultants with Big 4 industry experience.</p>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 font-['Poppins',_sans-serif]">Expert Team</h4>
+                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-['Inter',_sans-serif]">Senior consultants with Big 4 industry experience.</p>
               </div>
             </motion.div>
 
@@ -211,8 +213,8 @@ function WhyChooseUsSection() {
                 <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center text-slate-700 mb-4 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                   <i className="fas fa-handshake text-xs"></i>
                 </div>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2">Proven Trust</h4>
-                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed">Trusted by leading organizations globally.</p>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 font-['Poppins',_sans-serif]">Proven Trust</h4>
+                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-['Inter',_sans-serif]">Trusted by leading organizations globally.</p>
               </div>
             </motion.div>
 
@@ -222,8 +224,8 @@ function WhyChooseUsSection() {
                 <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center text-slate-700 mb-4 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                   <i className="fas fa-bolt text-xs"></i>
                 </div>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2">Efficient Delivery</h4>
-                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed">Highly responsive and cost-effective structural execution.</p>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 font-['Poppins',_sans-serif]">Efficient Delivery</h4>
+                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-['Inter',_sans-serif]">Highly responsive and cost-effective structural execution.</p>
               </div>
             </motion.div>
 
@@ -233,8 +235,8 @@ function WhyChooseUsSection() {
                 <div className="w-9 h-9 rounded-lg bg-slate-50 flex items-center justify-center text-slate-700 mb-4 transition-colors group-hover:bg-slate-900 group-hover:text-white">
                   <i className="fas fa-globe text-xs"></i>
                 </div>
-                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2">Global Standards</h4>
-                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed">Strong local presence adhering to premium global standards.</p>
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 font-['Poppins',_sans-serif]">Global Standards</h4>
+                <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed font-['Inter',_sans-serif]">Strong local presence adhering to premium global standards.</p>
               </div>
             </motion.div>
 
@@ -251,34 +253,34 @@ function WhyChooseUsSection() {
             
             {/* Stat Block 1 */}
             <div className="bg-white border border-slate-100 p-5 sm:p-8 rounded-xl text-center shadow-[0_2px_6px_-3px_rgba(0,0,0,0.03)]">
-              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-['Poppins',_sans-serif]">
                 <Counter end={7} />+
               </h3>
-              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2">Years Experience</p>
+              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2 font-['Inter',_sans-serif]">Years Experience</p>
             </div>
 
             {/* Stat Block 2 */}
             <div className="bg-white border border-slate-100 p-5 sm:p-8 rounded-xl text-center shadow-[0_2px_6px_-3px_rgba(0,0,0,0.03)]">
-              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-['Poppins',_sans-serif]">
                 <Counter end={100} />+
               </h3>
-              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2">Clients Worldwide</p>
+              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2 font-['Inter',_sans-serif]">Clients Worldwide</p>
             </div>
 
             {/* Stat Block 3 */}
             <div className="bg-white border border-slate-100 p-5 sm:p-8 rounded-xl text-center shadow-[0_2px_6px_-3px_rgba(0,0,0,0.03)]">
-              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-['Poppins',_sans-serif]">
                 <Counter end={95} />%
               </h3>
-              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2">Client Retention</p>
+              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2 font-['Inter',_sans-serif]">Client Retention</p>
             </div>
 
             {/* Stat Block 4 */}
             <div className="bg-white border border-slate-100 p-5 sm:p-8 rounded-xl text-center shadow-[0_2px_6px_-3px_rgba(0,0,0,0.03)]">
-              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+              <h3 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-['Poppins',_sans-serif]">
                 <Counter end={20} />+
               </h3>
-              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2">Expert Consultants</p>
+              <p className="text-slate-400 text-[9px] sm:text-[10px] font-bold tracking-widest uppercase mt-2 font-['Inter',_sans-serif]">Expert Consultants</p>
             </div>
 
           </motion.div>
@@ -289,6 +291,7 @@ function WhyChooseUsSection() {
     </>
   );
 }
+
 
 function AboutSection() {
   const servicesRef = useRef(null);
@@ -327,7 +330,7 @@ function AboutSection() {
 
   return (
     <>
-      <section className="py-16 sm:py-20 md:py-28 px-6 max-w-7xl mx-auto overflow-hidden font-sans">
+      <section className="py-16 sm:py-20 md:py-28 px-6 max-w-7xl mx-auto overflow-hidden">
         
         {/* SECTION HEADER */}
         <motion.div 
@@ -337,7 +340,7 @@ function AboutSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block font-['Poppins',_sans-serif]">
             About Us
           </h2>
           <div className="w-10 h-[2px] bg-slate-900 mx-auto mt-1"></div>
@@ -370,21 +373,21 @@ function AboutSection() {
             viewport={{ once: true, margin: "-50px" }}
           >
             <motion.h3 
-              className="text-lg sm:text-2xl font-bold text-slate-900 leading-snug tracking-tight max-w-xl lg:max-w-none"
+              className="text-lg sm:text-2xl font-bold text-slate-900 leading-snug tracking-tight max-w-xl lg:max-w-none font-['Poppins',_sans-serif]"
               variants={itemVariants}
             >
               Your Trusted Advisors — International Expertise. Local Insights.
             </motion.h3>
             
             <motion.p 
-              className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium max-w-2xl lg:max-w-none"
+              className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium max-w-2xl lg:max-w-none font-['Inter',_sans-serif]"
               variants={itemVariants}
             >
               At ProConsult International, we empower organizations with our strategic consulting, financial advisory, legal services, and technology-enabled solutions.
             </motion.p>
             
             <motion.p 
-              className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium max-w-2xl lg:max-w-none"
+              className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium max-w-2xl lg:max-w-none font-['Inter',_sans-serif]"
               variants={itemVariants}
             >
               With a sizeable presence in Pakistan, Afghanistan and with offices in Dubai, KSA, and the UK, we are ready, willing and able to help clients across international borders.
@@ -392,7 +395,7 @@ function AboutSection() {
 
             {/* HIGH-INTERACTIVE PREMIUM ACTION BUTTONS */}
             <motion.div 
-              className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start gap-3 mt-4 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row sm:flex-wrap justify-center lg:justify-start gap-3 mt-4 w-full sm:w-auto font-['Poppins',_sans-serif]"
               variants={itemVariants}
             >
               {/* Button 1: Read More (Ghost Variant) */}
@@ -457,6 +460,7 @@ function AboutSection() {
 
 
 
+
 function ServicesSection() {
   
   // Custom animations with a smooth, premium spring feel
@@ -500,7 +504,7 @@ function ServicesSection() {
   return (
     <>
       {/* SECTION WRAPPER: Matches minimalist executive slate branding */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-slate-50/50 overflow-hidden font-sans">
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-slate-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto">
 
           {/* SECTION HEADER */}
@@ -511,11 +515,11 @@ function ServicesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block font-['Poppins',_sans-serif]">
               Our Services
             </h2>
             <div className="w-10 h-[2px] bg-slate-900 mx-auto mt-1 mb-6"></div>
-            <p className="text-slate-600 max-w-3xl mx-auto text-xs sm:text-[14px] font-medium leading-relaxed px-2">
+            <p className="text-slate-600 max-w-3xl mx-auto text-xs sm:text-[14px] font-medium leading-relaxed px-2 font-['Inter',_sans-serif]">
               At ProConsult International, we partner with clients to deliver tailored solutions that drive sustainable growth, operational excellence, and long-term value.
             </p>
           </motion.div>
@@ -532,13 +536,13 @@ function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 order-2 md:order-1 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   IFRS 16 Leases Compliance Software Solution
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Our IFRS 16 Leases Compliance Software is a robust, automated solution designed to simplify lease accounting and ensure full compliance with IFRS 16 standards. Tailored for financial institutions, telecom operators, leasing companies, and asset-intensive organizations, our software enables accurate lease classification, liability recognition, and right-of-use asset tracking.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Explore more about IFRS 16 Compliance Solution
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -564,13 +568,13 @@ function ServicesSection() {
                 </div>
               </div>
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   IFRS 9 Impairment Solution Pro (ISP)
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Our innovative IFRS 9 Impairment Solution Pro (ISP) helps financial institutions calculate expected credit losses (ECL) in compliance with IFRS 9 requirements. ISP integrates advanced ECL engines, including PD, LGD, and Staging modules, while incorporating forward-looking macroeconomic factors. Designed for banks, fintechs, and financial companies, ISP ensures accurate impairment calculations and regulatory compliance.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about IFRS 9 Services
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -586,13 +590,13 @@ function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 order-2 md:order-1 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Financial Reporting & Advisory Solutions
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Our team of accounting specialists provides end-to-end financial reporting advisory services, including assistance with IFRS and GAAP compliance, preparation of financial statements, and implementation of best practices. We help organizations navigate complex accounting standards, optimize financial reporting processes, and achieve regulatory compliance.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about Financial Reporting & Advisory Solutions
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -618,13 +622,13 @@ function ServicesSection() {
                 </div>
               </div>
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Expert Business Consulting Services for Sustainable Growth
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Our team of seasoned business advisory consultants combines financial expertise, strategic planning, and industry-specific knowledge to help organizations navigate complexity, optimize performance, and achieve sustainable growth. We deliver actionable solutions tailored to your unique business challenges.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about Our Business Advisory Services
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -640,13 +644,13 @@ function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 order-2 md:order-1 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Expert Audit & Assurance Services
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Our certified audit professionals offer comprehensive audit and assurance services designed to enhance financial transparency, strengthen regulatory compliance, and drive operational excellence. Partner with us to ensure your financial statements meet global standards and support sustainable business growth.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Audit & Assurances services.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -672,13 +676,13 @@ function ServicesSection() {
                 </div>
               </div>
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Tax Compliance & Advisory Services
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Stay ahead of complex tax regulations with our expert tax compliance and advisory services. Our team ensures accurate and timely business income tax filings, reducing risk and enhancing regulatory compliance. We handle every aspect of corporate tax filing from preparation to submission.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Tax Compliance & Advisory Services.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -694,13 +698,13 @@ function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 order-2 md:order-1 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Legal Advisory & Expert Opinions
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Navigate complex corporate and regulatory challenges with confidence through our expert legal advisory services. We provide authoritative guidance on compliance, corporate governance, and strategic business decisions. Our actionable opinions are backed by thorough research.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Legal Advisory & Expert Opinions.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -726,13 +730,13 @@ function ServicesSection() {
                 </div>
               </div>
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Empowering Sustainable Business Practices
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   We help organizations build resilient, sustainable operations that align with global standards. Our services cover every aspect of sustainability, from strategy to implementation, ensuring your business thrives in an evolving regulatory landscape.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Empowering Sustainable Business.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -748,13 +752,13 @@ function ServicesSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 order-2 md:order-1 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Human Resource Services
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Unlock the full potential of your workforce with our comprehensive human resource services designed to drive organizational excellence. From executive search and C-level assessments to performance appraisals and total reward design, we provide tailored solutions that enhance leadership effectiveness and workforce engagement.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Human Resource services.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -780,13 +784,13 @@ function ServicesSection() {
                 </div>
               </div>
               <div className="flex-1 md:border-l-2 md:border-slate-900 md:pl-8 w-full text-center md:text-left">
-                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3">
+                <h3 className="text-lg sm:text-2xl font-bold text-slate-900 tracking-tight mb-3 font-['Poppins',_sans-serif]">
                   Professional IT Services for Businesses
                 </h3>
-                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6">
+                <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium mb-6 font-['Inter',_sans-serif]">
                   Empower your organization with cutting-edge IT solutions designed to boost productivity, enhance security, and drive sustainable growth. Our team of finance and technology experts delivers enterprise-grade systems that integrate seamlessly with your financial workflows and business goals.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors">
+                <a href="#" className="inline-flex items-center justify-center md:justify-start gap-2 text-[11px] sm:text-xs font-bold text-slate-800 hover:text-slate-900 group/link transition-colors font-['Poppins',_sans-serif]">
                   Learn more about our Information Technology Solutions.
                   <i className="fas fa-arrow-right text-[10px] transition-transform duration-300 group-hover/link:translate-x-1"></i>
                 </a>
@@ -801,6 +805,7 @@ function ServicesSection() {
     </>
   );
 }
+
 
 
 function MembershipSection() {
@@ -830,7 +835,7 @@ function MembershipSection() {
 
   return (
     <>
-      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-white overflow-hidden font-sans">
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           {/* SECTION HEADER */}
@@ -841,11 +846,11 @@ function MembershipSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block font-['Poppins',_sans-serif]">
               Membership & Associations
             </h2>
             <div className="w-10 h-[2px] bg-slate-900 mx-auto mt-1 mb-6"></div>
-            <p className="text-slate-600 max-w-3xl mx-auto text-xs sm:text-[14px] font-medium leading-relaxed px-2">
+            <p className="text-slate-600 max-w-3xl mx-auto text-xs sm:text-[14px] font-medium leading-relaxed px-2 font-['Inter',_sans-serif]">
               ProConsult International is an SECP-incorporated consulting firm, registered with leading financial and trade bodies.
             </p>
           </motion.div>
@@ -870,7 +875,7 @@ function MembershipSection() {
                     className="max-h-full max-w-[70%] sm:max-w-[85%] w-auto object-contain transition-transform duration-500 group-hover:scale-103" 
                   />
                 </div>
-                <h4 className="text-slate-800 font-bold text-xs sm:text-[13px] md:text-[14px] leading-relaxed px-1 tracking-tight">
+                <h4 className="text-slate-800 font-bold text-xs sm:text-[13px] md:text-[14px] leading-relaxed px-1 tracking-tight font-['Inter',_sans-serif]">
                   {item.desc}
                 </h4>
               </motion.div>
@@ -904,13 +909,13 @@ function TestimonialSection() {
   return (
     <>
     {/* SECTION CONTAINER: Deepened with clean, modern corporate gradient tracking (no background quote shapes) */}
-    <section className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-8 bg-blue-900 bg-[radial-gradient(circle_at_top,rgba(15,23,42,0.4),transparent_70%)] text-white overflow-hidden text-center flex flex-col items-center justify-center font-sans">
+    <section className="relative py-20 sm:py-28 md:py-36 px-4 sm:px-6 md:px-8 bg-blue-900 bg-[radial-gradient(circle_at_top,rgba(15,23,42,0.4),transparent_70%)] text-white overflow-hidden text-center flex flex-col items-center justify-center">
       
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center relative z-10">
         
         {/* THE QUOTE TEXT */}
         <motion.p 
-          className="font-medium italic leading-relaxed text-lg sm:text-2xl md:text-3xl lg:text-4xl max-w-3xl mb-8 sm:mb-10 px-2 sm:px-4 text-slate-100 tracking-tight"
+          className="font-medium italic leading-relaxed text-lg sm:text-2xl md:text-3xl lg:text-4xl max-w-3xl mb-8 sm:mb-10 px-2 sm:px-4 text-slate-100 tracking-tight font-['Inter',_sans-serif]"
           variants={elementVariant}
           custom={0}
           initial="hidden"
@@ -922,7 +927,7 @@ function TestimonialSection() {
 
         {/* AUTHOR NAME */}
         <motion.h4 
-          className="font-semibold tracking-wider text-xs sm:text-sm md:text-base mb-1.5 uppercase text-white/95"
+          className="font-semibold tracking-wider text-xs sm:text-sm md:text-base mb-1.5 uppercase text-white/95 font-['Poppins',_sans-serif]"
           variants={elementVariant}
           custom={0.2}
           initial="hidden"
@@ -934,7 +939,7 @@ function TestimonialSection() {
 
         {/* AUTHOR SUBTITLE */}
         <motion.p 
-          className="text-blue-200/80 font-normal tracking-wide text-[11px] sm:text-xs md:text-sm mb-10 sm:mb-12"
+          className="text-blue-200/80 font-normal tracking-wide text-[11px] sm:text-xs md:text-sm mb-10 sm:mb-12 font-['Inter',_sans-serif]"
           variants={elementVariant}
           custom={0.3}
           initial="hidden"
@@ -948,7 +953,7 @@ function TestimonialSection() {
         <div className="w-full flex justify-center px-4">
           <motion.a 
             href="#" 
-            className="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-white hover:text-slate-950 text-white font-bold rounded-md transition-all duration-300 text-[11px] sm:text-xs md:text-[13px] px-6 sm:px-10 py-3 sm:py-4 w-auto tracking-wider uppercase border border-white/20 hover:border-white shadow-sm"
+            className="group inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-white hover:text-slate-950 text-white font-bold rounded-md transition-all duration-300 text-[11px] sm:text-xs md:text-[13px] px-6 sm:px-10 py-3 sm:py-4 w-auto tracking-wider uppercase border border-white/20 hover:border-white shadow-sm font-['Poppins',_sans-serif]"
             variants={elementVariant}
             custom={0.45} // Triggers cleanly right after the subtitle completes its entrance
             initial="hidden"
@@ -1002,7 +1007,7 @@ function InternationalPresenceSection() {
   return (
     <>
       {/* SECTION WRAPPER: Matches the elegant minimalist slate theme */}
-      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-slate-50/50 overflow-hidden font-sans">
+      <section className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 bg-slate-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
           {/* SECTION HEADER */}
@@ -1013,14 +1018,14 @@ function InternationalPresenceSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-[10px] sm:text-xs font-bold text-slate-500 tracking-widest uppercase mb-2">
+            <p className="text-[10px] sm:text-xs font-bold text-slate-500 tracking-widest uppercase mb-2 font-['Poppins',_sans-serif]">
               International Presence
             </p>
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight pb-3 inline-block font-['Poppins',_sans-serif]">
               Our Reach Across Regions
             </h2>
             <div className="w-10 h-[2px] bg-slate-900 mx-auto mt-1 mb-6"></div>
-            <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium px-2">
+            <p className="text-slate-600 leading-relaxed text-xs sm:text-[14px] font-medium px-2 font-['Inter',_sans-serif]">
               With offices and associates across key markets, we provide localized service backed by global expertise.
             </p>
           </motion.div>
@@ -1037,7 +1042,7 @@ function InternationalPresenceSection() {
               viewport={{ once: true, margin: "-40px" }}
             >
               <div className="w-full text-center sm:text-left">
-                <h4 className="text-lg sm:text-xl font-bold text-slate-900 mb-4 sm:mb-6 border-b-[2px] border-slate-900 pb-2 inline-block tracking-tight">
+                <h4 className="text-lg sm:text-xl font-bold text-slate-900 mb-4 sm:mb-6 border-b-[2px] border-slate-900 pb-2 inline-block tracking-tight font-['Poppins',_sans-serif]">
                   Office Locations:
                 </h4>
               </div>
@@ -1050,7 +1055,7 @@ function InternationalPresenceSection() {
                   className="bg-white p-4 sm:p-5 rounded-xl shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] border border-slate-100 flex items-center gap-4 hover:shadow-md transition-all duration-300 hover:translate-x-1 group"
                 >
                   <span className="w-1.5 h-1.5 bg-slate-900 rounded-full flex-shrink-0 transition-transform duration-300 group-hover:scale-125"></span>
-                  <p className="text-slate-800 text-xs sm:text-[14px] font-bold tracking-tight">{city}</p>
+                  <p className="text-slate-800 text-xs sm:text-[14px] font-bold tracking-tight font-['Inter',_sans-serif]">{city}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -1077,7 +1082,7 @@ function InternationalPresenceSection() {
               <div className="w-full flex justify-center px-2">
                 <motion.a 
                   href="#" 
-                  className="group inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-md shadow-sm transition-all duration-300 text-[10px] sm:text-xs px-4 sm:px-8 py-2 sm:py-3.5 w-auto uppercase tracking-wider"
+                  className="group inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-md shadow-sm transition-all duration-300 text-[10px] sm:text-xs px-4 sm:px-8 py-2 sm:py-3.5 w-auto uppercase tracking-wider font-['Poppins',_sans-serif]"
                   whileHover={{ scale: 1.02, y: -0.5 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -1115,12 +1120,12 @@ function GrowTogetherSection() {
   };
 
   return (
-    <section className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-6 bg-blue-900 bg-[radial-gradient(circle_at_bottom,rgba(15,23,42,0.4),transparent_70%)] text-white overflow-hidden text-center flex flex-col items-center justify-center font-sans">
+    <section className="relative py-20 sm:py-28 md:py-32 px-4 sm:px-6 bg-blue-900 bg-[radial-gradient(circle_at_bottom,rgba(15,23,42,0.4),transparent_70%)] text-white overflow-hidden text-center flex flex-col items-center justify-center">
       <div className="max-w-4xl mx-auto w-full flex flex-col items-center relative z-10">
         
         {/* HEADER TEXT */}
         <motion.h2 
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 tracking-tight uppercase"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 tracking-tight uppercase font-['Poppins',_sans-serif]"
           variants={elementVariant}
           custom={0}
           initial="hidden"
@@ -1132,7 +1137,7 @@ function GrowTogetherSection() {
 
         {/* SUBTEXT */}
         <motion.p 
-          className="text-blue-200/90 text-xs sm:text-sm md:text-base max-w-xl sm:max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-12 px-2"
+          className="text-blue-200/90 text-xs sm:text-sm md:text-base max-w-xl sm:max-w-2xl mx-auto leading-relaxed mb-10 sm:mb-12 px-2 font-['Inter',_sans-serif]"
           variants={elementVariant}
           custom={0.15}
           initial="hidden"
@@ -1155,7 +1160,7 @@ function GrowTogetherSection() {
           {/* CONTACT US BUTTON */}
           <motion.a 
             href="#" 
-            className="group flex-1 inline-flex items-center justify-center gap-2 bg-white text-slate-950 font-bold rounded-md shadow-sm transition-all duration-300 text-[10px] sm:text-xs md:text-[13px] px-3 sm:px-8 py-3 sm:py-4 tracking-wider uppercase border border-white"
+            className="group flex-1 inline-flex items-center justify-center gap-2 bg-white text-slate-950 font-bold rounded-md shadow-sm transition-all duration-300 text-[10px] sm:text-xs md:text-[13px] px-3 sm:px-8 py-3 sm:py-4 tracking-wider uppercase border border-white font-['Poppins',_sans-serif]"
             whileTap={{ scale: 0.98 }}
           >
             <span>Contact Us</span>
@@ -1165,7 +1170,7 @@ function GrowTogetherSection() {
           {/* REQUEST A DEMO BUTTON */}
           <motion.a 
             href="/demo" 
-            className="group flex-1 inline-flex items-center justify-center bg-transparent text-white font-bold rounded-md transition-all duration-300 hover:bg-white hover:text-slate-950 text-[10px] sm:text-xs md:text-[13px] px-3 sm:px-8 py-3 sm:py-4 tracking-wider uppercase border border-white/30 hover:border-white shadow-sm"
+            className="group flex-1 inline-flex items-center justify-center bg-transparent text-white font-bold rounded-md transition-all duration-300 hover:bg-white hover:text-slate-950 text-[10px] sm:text-xs md:text-[13px] px-3 sm:px-8 py-3 sm:py-4 tracking-wider uppercase border border-white/30 hover:border-white shadow-sm font-['Poppins',_sans-serif]"
             whileTap={{ scale: 0.98 }}
           >
             Request a Demo
